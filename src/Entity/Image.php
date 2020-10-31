@@ -12,6 +12,7 @@ class Image
 {
     /**
      * @ORM\OneToOne(targetEntity=Trick::class)
+     * @ORM\Column(type="integer")
      */
     protected $trick;
 
@@ -60,4 +61,24 @@ class Image
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getTrick(): ?int
+    {
+        return $this->trick;
+    }
+
+    /**
+     * @param int $trick
+     * @return Image
+     */
+    public function setTrick($trick)
+    {
+        $this->trick = $trick;
+        return $this;
+    }
+
+
 }
