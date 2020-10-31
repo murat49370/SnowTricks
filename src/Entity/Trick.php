@@ -12,14 +12,16 @@ class Trick
 
 {
     /**
-     * @ORM\OneToOne(targetEntity=TrickGroup::class)
+     * @var TrickGroup
+     * @ORM\ManyToOne (targetEntity=TrickGroup::class, cascade={"persist"})
      */
-    protected $trick_group;
+    private $trick_group;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class)
+     * @var User
+     * @ORM\ManyToOne(targetEntity=User::class, cascade={"persist"})
      */
-    protected $user;
+    private $user;
 
     /**
      * @ORM\Id
@@ -53,6 +55,22 @@ class Trick
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $main_image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+
+    public function __construct()
+    {
+        $this->create_at = new \DateTime();
+        $this->update_at = new \DateTime();
+    }
 
 
     public function getId(): ?int
@@ -119,4 +137,73 @@ class Trick
 
         return $this;
     }
+
+    public function getMainImage(): ?string
+    {
+        return $this->main_image;
+    }
+
+    public function setMainImage(string $main_image): self
+    {
+        $this->main_image = $main_image;
+
+        return $this;
+    }
+
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return Trick
+     */
+    public function setUser(User $user): Trick
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return TrickGroup
+     */
+    public function getTrickGroup(): TrickGroup
+    {
+        return $this->trick_group;
+    }
+
+    /**
+     * @param TrickGroup $trick_group
+     * @return Trick
+     */
+    public function setTrickGroup(TrickGroup $trick_group): Trick
+    {
+        $this->trick_group = $trick_group;
+        return $this;
+    }
+
+
+
+
+
+
+
+
 }

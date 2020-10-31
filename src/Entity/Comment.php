@@ -11,14 +11,16 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
     /**
-     * @ORM\OneToOne(targetEntity=User::class)
+     * @var User
+     * @ORM\ManyToOne(targetEntity=User::class, cascade={"persist"})
      */
-    protected $user;
+    private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Trick::class)
+     * @var Trick
+     * @ORM\ManyToOne(targetEntity=Trick::class, cascade={"persist"})
      */
-    protected $trick;
+    private $trick;
 
     /**
      * @ORM\Id
@@ -41,6 +43,12 @@ class Comment
      * @ORM\Column(type="string", length=255)
      */
     private $status;
+
+
+    public function __construct()
+    {
+        $this->create_at = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -82,4 +90,42 @@ class Comment
 
         return $this;
     }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return Comment
+     */
+    public function setUser(User $user): Comment
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return Trick
+     */
+    public function getTrick(): Trick
+    {
+        return $this->trick;
+    }
+
+    /**
+     * @param Trick $trick
+     * @return Comment
+     */
+    public function setTrick(Trick $trick): Comment
+    {
+        $this->trick = $trick;
+        return $this;
+    }
+
+
 }

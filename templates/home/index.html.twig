@@ -55,8 +55,43 @@
     </section>
     <!-- About (Services)-->
     <section class="container mt-4 pt-5 mt-md-2 pt-md-7 pb-6">
+        <a class="nav-link" href="#">
+            <i class="fa fa-home btn-primary"></i>
+            <span class="sr-only">(current)</span>
+        </a>
+        <div class="container">
+            <div class="row">
+                {% for trick in tricks %}
+                    <div class=" card col-md-2 m-1 pr-0 pl-0">
+                        <img src="{{ trick.mainImage }}" class="card-img-top m-0"  alt="...">
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h5 class="card-title">{{ trick.title }}</h5>
+                                    <a href="{{ path('trick_read', { id: trick.id }) }}">Voir</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <a class="inline" href="#">
+                                        <i class="fe-edit-2"></i>
+                                    </a>
+                                    <a class="inline" href="#">
+                                        <i class="fe-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
         <h2 class="text-center mb-3">About Around</h2>
         {{ request }}
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+        </div>
+
+
         <div class="row justify-content-center mb-5 pb-2">
             <div class="col-xl-6 col-lg-7">
                 <p class="text-center mb-0">Find aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
