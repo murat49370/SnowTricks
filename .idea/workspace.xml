@@ -20,25 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d1b3fb4-bc25-4445-ab5f-835f2cd2cb00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/ImageFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/trick/read.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SnowTricks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SnowTricks.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201030060233.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201030063528.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201030064942.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TrickController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ImageFixtures.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Image.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Trick.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Trick.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/TrickGroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TrickGroup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Video.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Video.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +188,9 @@
       <workItem from="1604027226189" duration="5091000" />
       <workItem from="1604036853211" duration="324000" />
       <workItem from="1604037199633" duration="13622000" />
-      <workItem from="1604121547975" duration="8968000" />
+      <workItem from="1604121547975" duration="12435000" />
+      <workItem from="1604313334848" duration="1222000" />
+      <workItem from="1604383093262" duration="5186000" />
     </task>
     <servers />
   </component>

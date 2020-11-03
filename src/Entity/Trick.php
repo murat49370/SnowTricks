@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrickRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,17 +13,17 @@ use Doctrine\ORM\Mapping as ORM;
 class Trick
 
 {
-    /**
-     * @var TrickGroup
-     * @ORM\ManyToOne (targetEntity=TrickGroup::class, cascade={"persist"})
-     */
-    private $trick_group;
-
-    /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity=User::class, cascade={"persist"})
-     */
-    private $user;
+//    /**
+//     * @var TrickGroup
+//     * @ORM\ManyToOne (targetEntity=TrickGroup::class, cascade={"persist"})
+//     */
+//    private $trick_group;
+//
+//    /**
+//     * @var User
+//     * @ORM\ManyToOne(targetEntity=User::class, cascade={"persist"})
+//     */
+//    private $user;
 
     /**
      * @ORM\Id
@@ -65,11 +67,48 @@ class Trick
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tricks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=TrickGroup::class, inversedBy="tricks")
+     */
+    private $trick_group;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick", orphanRemoval=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="trick", orphanRemoval=true)
+     */
+    private $videos;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="trick", orphanRemoval=true)
+     */
+    private $images;
+
+//    /**
+//     * @ORM\ManyToOne(targetEntity=User::class)
+//     * @ORM\JoinColumn(nullable=false)
+//     */
+//    private $user;
+    
+
 
     public function __construct()
     {
         $this->create_at = new \DateTime();
         $this->update_at = new \DateTime();
+        $this->trick_group = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
 
@@ -163,41 +202,179 @@ class Trick
         return $this;
     }
 
-    /**
-     * @return User
-     */
-    public function getUser(): User
-    {
-        return $this->user;
+//    /**
+//     * @return User
+//     */
+//    public function getUser(): User
+//    {
+//        return $this->user;
+//    }
+//
+//    /**
+//     * @param User $user
+//     * @return Trick
+//     */
+//    public function setUser(User $user): Trick
+//    {
+//        $this->user = $user;
+//        return $this;
+//    }
+//
+//    /**
+//     * @return TrickGroup
+//     */
+//    public function getTrickGroup(): TrickGroup
+//    {
+//        return $this->trick_group;
+//    }
+//
+//    /**
+//     * @param TrickGroup $trick_group
+//     * @return Trick
+//     */
+//    public function setTrickGroup(TrickGroup $trick_group): Trick
+//    {
+//        $this->trick_group = $trick_group;
+//        return $this;
+//    }
+
+//public function getUser(): ?User
+//{
+//    return $this->user;
+//}
+//
+//public function setUser(?User $user): self
+//{
+//    $this->user = $user;
+//
+//    return $this;
+//}
+
+public function getUser(): ?User
+{
+    return $this->user;
+}
+
+public function setUser(?User $user): self
+{
+    $this->user = $user;
+
+    return $this;
+}
+
+/**
+ * @return Collection|TrickGroup[]
+ */
+public function getTrickGroup(): Collection
+{
+    return $this->trick_group;
+}
+
+public function addTrickGroup(TrickGroup $trickGroup): self
+{
+    if (!$this->trick_group->contains($trickGroup)) {
+        $this->trick_group[] = $trickGroup;
     }
 
-    /**
-     * @param User $user
-     * @return Trick
-     */
-    public function setUser(User $user): Trick
-    {
-        $this->user = $user;
-        return $this;
+    return $this;
+}
+
+public function removeTrickGroup(TrickGroup $trickGroup): self
+{
+    $this->trick_group->removeElement($trickGroup);
+
+    return $this;
+}
+
+/**
+ * @return Collection|Comment[]
+ */
+public function getComments(): Collection
+{
+    return $this->comments;
+}
+
+public function addComment(Comment $comment): self
+{
+    if (!$this->comments->contains($comment)) {
+        $this->comments[] = $comment;
+        $comment->setTrick($this);
     }
 
-    /**
-     * @return TrickGroup
-     */
-    public function getTrickGroup(): TrickGroup
-    {
-        return $this->trick_group;
+    return $this;
+}
+
+public function removeComment(Comment $comment): self
+{
+    if ($this->comments->removeElement($comment)) {
+        // set the owning side to null (unless already changed)
+        if ($comment->getTrick() === $this) {
+            $comment->setTrick(null);
+        }
     }
 
-    /**
-     * @param TrickGroup $trick_group
-     * @return Trick
-     */
-    public function setTrickGroup(TrickGroup $trick_group): Trick
-    {
-        $this->trick_group = $trick_group;
-        return $this;
+    return $this;
+}
+
+/**
+ * @return Collection|Video[]
+ */
+public function getVideos(): Collection
+{
+    return $this->videos;
+}
+
+public function addVideo(Video $video): self
+{
+    if (!$this->videos->contains($video)) {
+        $this->videos[] = $video;
+        $video->setTrick($this);
     }
+
+    return $this;
+}
+
+public function removeVideo(Video $video): self
+{
+    if ($this->videos->removeElement($video)) {
+        // set the owning side to null (unless already changed)
+        if ($video->getTrick() === $this) {
+            $video->setTrick(null);
+        }
+    }
+
+    return $this;
+}
+
+/**
+ * @return Collection|Image[]
+ */
+public function getImages(): Collection
+{
+    return $this->images;
+}
+
+public function addImage(Image $image): self
+{
+    if (!$this->images->contains($image)) {
+        $this->images[] = $image;
+        $image->setTrick($this);
+    }
+
+    return $this;
+}
+
+public function removeImage(Image $image): self
+{
+    if ($this->images->removeElement($image)) {
+        // set the owning side to null (unless already changed)
+        if ($image->getTrick() === $this) {
+            $image->setTrick(null);
+        }
+    }
+
+    return $this;
+}
 
 
 

@@ -10,10 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Video
 {
-    /**
-     * @ORM\OneToOne(targetEntity=Trick::class)
-     */
-    protected $trick;
+//    /**
+//     * @ORM\OneToOne(targetEntity=Trick::class)
+//     */
+//    protected $trick;
 
     /**
      * @ORM\Id
@@ -26,6 +26,12 @@ class Video
      * @ORM\Column(type="text")
      */
     private $url;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="videos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $trick;
 
     public function getId(): ?int
     {
@@ -40,6 +46,18 @@ class Video
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getTrick(): ?Trick
+    {
+        return $this->trick;
+    }
+
+    public function setTrick(?Trick $trick): self
+    {
+        $this->trick = $trick;
 
         return $this;
     }
