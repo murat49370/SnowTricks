@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur SnowTricks{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Gérer les Tricks</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="text-right"><a href="{{ path('admin.trick.create') }}" class="btn btn-primary">Crée un trick</a></div>
+        <br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for trick in tricks %}
+            <tr>
+                <td>{{ trick.title }}</td>
+                <td>
+                    <a href="{{ path('admin.trick.edit', {id: trick.id}) }}" class="btn btn-secondary">Editer</a>
+                    <form method="post" action="{{ path('admin.trick.delete', {id: trick.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiement sûr ?')">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+
+                        <button class="btn btn-danger">Supprimer</button>
+                    </form>
+
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        </div>
+{% endblock %}

@@ -140,29 +140,34 @@ class Comment
 //        return $this;
 //    }
 
-public function getUser(): ?User
-{
-    return $this->user;
-}
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
 
-public function setUser(?User $user): self
-{
-    $this->user = $user;
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
-    return $this;
-}
+        return $this;
+    }
 
-public function getTrick(): ?Trick
-{
-    return $this->trick;
-}
+    public function getTrick(): ?Trick
+    {
+        return $this->trick;
+    }
 
-public function setTrick(?Trick $trick): self
-{
-    $this->trick = $trick;
+    public function setTrick(?Trick $trick): self
+    {
+        $this->trick = $trick;
 
-    return $this;
-}
+        return $this;
+    }
+
+    public function getAuthorPseudo(): string
+    {
+        return $this->user->getPseudo();
+    }
 
 
 }

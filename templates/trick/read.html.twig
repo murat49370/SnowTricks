@@ -7,5 +7,17 @@
     <h1>{{ trick.title }}</h1>
     <small>Publier le {{ trick.createAt|date("d/m/Y") }}</small>
     <p>{{ trick.content }}</p>
+    <small>{{ trick.comments|length }} commentaires</small>
+
+    <ul>
+        {% for comment in trick.comments %}
+            <li>Pseudo : {{ comment.AuthorPseudo }}</li>
+            <li>Publier le {{ comment.createAt|date("d/m/Y") }}</li>
+            <li>Message : {{ comment.content }}</li>
+
+        {% endfor %}
+    </ul>
+
+
 
 {% endblock %}

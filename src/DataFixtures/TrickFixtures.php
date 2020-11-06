@@ -32,6 +32,16 @@ class TrickFixtures extends Fixture
         $user->setPassword('1234');
         $manager->persist($user);
 
+        $user2 = new User();
+        $user2->setFirstName('Boulanger');
+        $user2->setLastName('Michel');
+        $user2->setRole('admin');
+        $user2->setStatus('valide');
+        $user2->setPseudo('toto');
+        $user2->setEmail('toto@admin.com');
+        $user2->setPassword('1234');
+        $manager->persist($user2);
+
         $trickGroup1 = new TrickGroup();
         $trickGroup1->setTitle("TrickGroup 1");
         $trickGroup1->setSlug('slug-trick-group-1');
@@ -61,13 +71,13 @@ class TrickFixtures extends Fixture
             $image->setTrick($trick);
             $manager->persist($image);
 
-            for ($j = 1; $j <= 5; $j++)
+            for ($j = 1; $j <= rand(5, 15); $j++)
             {
                $comment = new Comment();
                $comment->setTrick($trick);
                $comment->setUser($user);
                $comment->setStatus('valide');
-               $comment->setContent("Contenue du commentaire N°" . $i);
+               $comment->setContent("Contenue du commentaire N°" . $j);
                $manager->persist($comment);
             }
 

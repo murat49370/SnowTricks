@@ -19,6 +19,21 @@ class TrickRepository extends ServiceEntityRepository
         parent::__construct($registry, Trick::class);
     }
 
+    /**
+     * Optimise la requete SQL pour recupere les Tricks et ces commentaires
+     * @return array
+     */
+    public function getAllTricks(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->addSelect('c')
+            ->join('t.comments', 'c')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     // /**
     //  * @return Trick[] Returns an array of Trick objects
     //  */
