@@ -23,10 +23,9 @@ class TrickController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $tricks = $this->getDoctrine()->getRepository(Trick::class)->findAll();
+        $tricks = $this->getDoctrine()->getRepository(Trick::class)->getAllTricks();
         return $this->render('home/index.html.twig', [
             'current_menu' => 'home',
-            'controller_name' => 'HomeController',
             'request' => $request,
             'tricks' => $tricks
         ]);

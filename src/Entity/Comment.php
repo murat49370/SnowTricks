@@ -10,17 +10,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Comment
 {
-    /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity=User::class, cascade={"persist"})
-     */
-    private $user;
-
-    /**
-     * @var Trick
-     * @ORM\ManyToOne(targetEntity=Trick::class, cascade={"persist"})
-     */
-    private $trick;
+//    /**
+//     * @var User
+//     * @ORM\ManyToOne(targetEntity=User::class, cascade={"persist"})
+//     */
+//    private $user;
+//
+//    /**
+//     * @var Trick
+//     * @ORM\ManyToOne(targetEntity=Trick::class, cascade={"persist"})
+//     * @ORM\Column(type="text")
+//     */
+//    private $trick;
 
     /**
      * @ORM\Id
@@ -43,6 +44,18 @@ class Comment
      * @ORM\Column(type="string", length=255)
      */
     private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $trick;
 
 
     public function __construct()
@@ -91,40 +104,69 @@ class Comment
         return $this;
     }
 
-    /**
-     * @return User
-     */
-    public function getUser(): User
+//    /**
+//     * @return User
+//     */
+//    public function getUser(): User
+//    {
+//        return $this->user;
+//    }
+//
+//    /**
+//     * @param User $user
+//     * @return Comment
+//     */
+//    public function setUser(User $user): Comment
+//    {
+//        $this->user = $user;
+//        return $this;
+//    }
+//
+//    /**
+//     * @return Trick
+//     */
+//    public function getTrick(): Trick
+//    {
+//        return $this->trick;
+//    }
+//
+//    /**
+//     * @param Trick $trick
+//     * @return Comment
+//     */
+//    public function setTrick(Trick $trick): Comment
+//    {
+//        $this->trick = $trick;
+//        return $this;
+//    }
+
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    /**
-     * @param User $user
-     * @return Comment
-     */
-    public function setUser(User $user): Comment
+    public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
-    /**
-     * @return Trick
-     */
-    public function getTrick(): Trick
+    public function getTrick(): ?Trick
     {
         return $this->trick;
     }
 
-    /**
-     * @param Trick $trick
-     * @return Comment
-     */
-    public function setTrick(Trick $trick): Comment
+    public function setTrick(?Trick $trick): self
     {
         $this->trick = $trick;
+
         return $this;
+    }
+
+    public function getAuthorPseudo(): string
+    {
+        return $this->user->getPseudo();
     }
 
 

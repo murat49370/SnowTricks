@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
     <meta charset="utf-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <!-- SEO Meta Tags-->
@@ -10,11 +11,11 @@
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <link rel="mask-icon" color="#5bbad5" href="{{ asset('safari-pinned-tab.svg') }}">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
     <!-- Page loading styles-->
@@ -100,12 +101,14 @@
 
     </script>
     <!-- Vendor Styles-->
-    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
-    <link rel="stylesheet" media="screen" href="vendor/tiny-slider/dist/tiny-slider.css"/>
-    <link rel="stylesheet" media="screen" href="vendor/lightgallery.js/dist/css/lightgallery.min.css"/>
-    <link rel="stylesheet" media="screen" href="vendor/flatpickr/dist/flatpickr.min.css"/>
+    <link rel="stylesheet" media="screen" href="{{ asset('vendor/simplebar/dist/simplebar.min.css') }}"/>
+    <link rel="stylesheet" media="screen" href="{{ asset('vendor/tiny-slider/dist/tiny-slider.css') }}"/>
+    <link rel="stylesheet" media="screen" href="{{ asset('vendor/lightgallery.js/dist/css/lightgallery.min.css') }}"/>
+    <link rel="stylesheet" media="screen" href="{{ asset('vendor/flatpickr/dist/flatpickr.min.css') }}"/>
+
+
     <!-- Main Theme Styles + Bootstrap-->
-    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="{{ asset('css/theme.min.css') }}">
     {% block stylesheets %}{% endblock %}
 </head>
 <!-- Body-->
@@ -193,7 +196,7 @@
     <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
     <header class="cs-header navbar navbar-expand-lg navbar-light bg-light navbar-sticky" data-scroll-header>
         <div class="container px-0 px-xl-3">
-            <button class="navbar-toggler ml-n2 mr-2" type="button" data-toggle="offcanvas" data-offcanvas-id="primaryMenu"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand order-lg-1 mx-auto ml-lg-0 pr-lg-2 mr-lg-4" href="index.html"><img class="d-none d-lg-block" width="153" src="img/logo/logo-snowTricks-dark.png" alt="Around"/><img class="d-lg-none" width="58" src="img/logo/logo-icon.png" alt="SnowTricks"/></a>
+            <button class="navbar-toggler ml-n2 mr-2" type="button" data-toggle="offcanvas" data-offcanvas-id="primaryMenu"><span class="navbar-toggler-icon"></span></button><a class="navbar-brand order-lg-1 mx-auto ml-lg-0 pr-lg-2 mr-lg-4" href="{{ path('home') }}"><img class="d-none d-lg-block" width="153" src="{{ asset('img/logo/logo-snowTricks-dark.png') }}" alt="Around"/><img class="d-lg-none" width="58" src="{{ asset('img/logo/logo-icon.png') }}" alt="SnowTricks"/></a>
             <div class="d-flex align-items-center order-lg-3 ml-lg-auto"><a class="nav-link-style font-size-sm text-nowrap" href="#modal-signin" data-toggle="modal" data-view="#modal-signin-view"><i class="fe-user font-size-xl mr-2"></i>Sign in</a><a class="btn btn-primary ml-grid-gutter d-none d-lg-inline-block" href="#modal-signin" data-toggle="modal" data-view="#modal-signup-view">Sign up</a></div>
             <div class="cs-offcanvas-collapse order-lg-2" id="primaryMenu">
                 <div class="cs-offcanvas-cap navbar-box-shadow">
@@ -228,22 +231,24 @@
     </div>
 </footer>
 <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2">Top</span><i class="btn-scroll-top-icon fe-arrow-up">   </i></a>
-<!-- Vendor scrits: js libraries and plugins-->
-<script src="vendor/jquery/dist/jquery.slim.min.js"></script>
-<script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-<script src="vendor/simplebar/dist/simplebar.min.js"></script>
-<script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-<script src="vendor/jarallax/dist/jarallax.min.js"></script>
-<script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-<script src="vendor/lightgallery.js/dist/js/lightgallery.min.js"></script>
-<script src="vendor/lg-fullscreen.js/dist/lg-fullscreen.min.js"></script>
-<script src="vendor/lg-zoom.js/dist/lg-zoom.min.js"></script>
-<script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-<script src="vendor/shufflejs/dist/shuffle.min.js"></script>
-<script src="vendor/flatpickr/dist/flatpickr.min.js"></script>
+<!-- Vendor scripts: js libraries and plugins-->
+<script src="{{ asset('vendor/jquery/dist/jquery.slim.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/bs-custom-file-input/dist/bs-custom-file-input.min.js') }}"></script>
+<script src="{{ asset('vendor/simplebar/dist/simplebar.min.js') }}"></script>
+<script src="{{ asset('vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
+<script src="{{ asset('vendor/jarallax/dist/jarallax.min.js') }}"></script>
+<script src="{{ asset('vendor/tiny-slider/dist/min/tiny-slider.js') }}"></script>
+<script src="{{ asset('vendor/lightgallery.js/dist/js/lightgallery.min.js') }}"></script>
+<script src="{{ asset('vendor/lg-fullscreen.js/dist/lg-fullscreen.min.js') }}"></script>
+<script src="{{ asset('vendor/lg-zoom.js/dist/lg-zoom.min.js') }}"></script>
+<script src="{{ asset('vendor/jarallax/dist/jarallax.min.js') }}"></script>
+<script src="{{ asset('vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+<script src="{{ asset('vendor/shufflejs/dist/shuffle.min.js') }}"></script>
+<script src="{{ asset('vendor/flatpickr/dist/flatpickr.min.js') }}"></script>
+
 <!-- Main theme script-->
-<script src="js/theme.min.js"></script>
+<script src="{{ asset('js/theme.min.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

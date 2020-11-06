@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Comment;
+use App\Entity\Image;
 use App\Entity\Trick;
 use App\Entity\TrickGroup;
 use App\Entity\User;
@@ -31,13 +32,23 @@ class TrickFixtures extends Fixture
         $user->setPassword('1234');
         $manager->persist($user);
 
+        $user2 = new User();
+        $user2->setFirstName('Boulanger');
+        $user2->setLastName('Michel');
+        $user2->setRole('admin');
+        $user2->setStatus('valide');
+        $user2->setPseudo('toto');
+        $user2->setEmail('toto@admin.com');
+        $user2->setPassword('1234');
+        $manager->persist($user2);
+
         $trickGroup1 = new TrickGroup();
-        $trickGroup1->setTitle("TrickGroup-1");
+        $trickGroup1->setTitle("TrickGroup 1");
         $trickGroup1->setSlug('slug-trick-group-1');
         $manager->persist($trickGroup1);
 
         $trickGroup2 = new TrickGroup();
-        $trickGroup2->setTitle("TrickGroup-2");
+        $trickGroup2->setTitle("TrickGroup 2");
         $trickGroup2->setSlug('slug-trick-group-2');
         $manager->persist($trickGroup2);
 
@@ -49,21 +60,29 @@ class TrickFixtures extends Fixture
             $trick->setStatus("valide");
             $trick->setMainImage("http://placekitten.com/300/300");
             $trick->setSlug('slug-trick' . $i);
-            $trick->setTrickGroup($trickGroup1);
             $trick->setUser($user);
+            $trick->addTrickGroup($trickGroup1);
             $manager->persist($trick);
 
-            for ($j = 1; $j <= 5; $j++)
+            // Images
+            $image = new Image();
+            $image->setUrl('http://placekitten.com/600/300');
+            $image->setAlt('Mon petit chat');
+            $image->setTrick($trick);
+            $manager->persist($image);
+
+            for ($j = 1; $j <= rand(5, 15); $j++)
             {
                $comment = new Comment();
                $comment->setTrick($trick);
                $comment->setUser($user);
                $comment->setStatus('valide');
-               $comment->setContent("Contenue du commentaire N°" . $i);
+               $comment->setContent("Contenue du commentaire N°" . $j);
                $manager->persist($comment);
             }
 
         }
+
 
         $manager->flush();
     }

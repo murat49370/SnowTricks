@@ -69,6 +69,8 @@
                                 <div class="col-lg-8">
                                     <h5 class="card-title">{{ trick.title }}</h5>
                                     <a href="{{ path('trick_read', { id: trick.id }) }}">Voir</a>
+                                    <br>
+                                    <small>{{ trick.comments|length }} commentaires</small>
                                 </div>
                                 <div class="col-lg-4">
                                     <a class="inline" href="#">

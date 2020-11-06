@@ -10,11 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Image
 {
-    /**
-     * @ORM\OneToOne(targetEntity=Trick::class)
-     * @ORM\Column(type="integer")
-     */
-    protected $trick;
+//    /**
+//     * @ORM\OneToOne(targetEntity=Trick::class)
+//     * @ORM\Column(type="integer")
+//     */
+//    protected $trick;
 
     /**
      * @ORM\Id
@@ -32,6 +32,12 @@ class Image
      * @ORM\Column(type="string", length=255)
      */
     private $url;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="images")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $trick;
 
     public function getId(): ?int
     {
@@ -62,23 +68,35 @@ class Image
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getTrick(): ?int
-    {
-        return $this->trick;
-    }
+//    /**
+//     * @return int
+//     */
+//    public function getTrick(): ?int
+//    {
+//        return $this->trick;
+//    }
+//
+//    /**
+//     * @param int $trick
+//     * @return Image
+//     */
+//    public function setTrick($trick)
+//    {
+//        $this->trick = $trick;
+//        return $this;
+//    }
 
-    /**
-     * @param int $trick
-     * @return Image
-     */
-    public function setTrick($trick)
-    {
-        $this->trick = $trick;
-        return $this;
-    }
+public function getTrick(): ?Trick
+{
+    return $this->trick;
+}
+
+public function setTrick(?Trick $trick): self
+{
+    $this->trick = $trick;
+
+    return $this;
+}
 
 
 }
