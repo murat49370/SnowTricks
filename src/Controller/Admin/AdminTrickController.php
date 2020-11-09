@@ -80,7 +80,7 @@ class AdminTrickController extends AbstractController
         {
             $this->em->flush();
             $this->addFlash('success', 'Trick modifié avec succès');
-            return $this->redirectToRoute('admin.trick.index');
+            return $this->redirectToRoute('admin_trick_index');
         }
 
         return $this->render('admin/trick/edit.html.twig', [
@@ -106,7 +106,7 @@ class AdminTrickController extends AbstractController
             $this->em->persist($trick);
             $this->em->flush();
             $this->addFlash('success', 'Trick crée avec succès');
-            return $this->redirectToRoute('admin.trick.index');
+            return $this->redirectToRoute('admin_trick_index');
         }
 
         return $this->render('admin/trick/new.html.twig', [
@@ -131,7 +131,7 @@ class AdminTrickController extends AbstractController
             $this->addFlash('success', 'Trick supprimé avec succès');
 
         }
-        return $this->redirectToRoute('admin.trick.index');
+        return $this->redirectToRoute('admin_trick_index');
 
     }
 

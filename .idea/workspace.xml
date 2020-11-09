@@ -20,19 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d1b3fb4-bc25-4445-ab5f-835f2cd2cb00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/packages/knp_paginator.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SnowTricks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SnowTricks.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminUserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/category/_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/category/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/category/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/category/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/user/_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/user/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/user/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/user/new.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminCommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminCommentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminTrickController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminTrickController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TrickRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TrickRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/trick/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/trick/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/trick/read.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/trick/read.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/comment/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/comment/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,21 +175,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.jetbrains.php.lang.actions.generation.PhpGenerateFieldAccessorHandlerBase$MyMemberChooser.fluent.setters.last.selected" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Controller/Admin" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="DEFAULT" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\admin" />
-      <recent name="C:\Users\Murat\Desktop\SnowTricks\src\Controller\Admin" />
-      <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\admin\trick" />
-      <recent name="C:\Users\Murat\Desktop\SnowTricks\src\DataFixtures" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\security" />
       <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\security\security" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Murat\Desktop\SnowTricks\src\Controller\Admin" />
+      <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\admin" />
+      <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\admin\trick" />
+      <recent name="C:\Users\Murat\Desktop\SnowTricks\src\DataFixtures" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -209,7 +213,7 @@
       <workItem from="1604557029194" duration="127000" />
       <workItem from="1604647600223" duration="26926000" />
       <workItem from="1604897202506" duration="15438000" />
-      <workItem from="1604926193651" duration="4350000" />
+      <workItem from="1604926193651" duration="7519000" />
     </task>
     <servers />
   </component>
@@ -241,10 +245,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2574" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1604126688927" />
-    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604911557712">
+    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604933656857">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1604911557712" />
+    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1604933656857" />
     <state x="2641" y="243" key="NewPhpClassDialog" timestamp="1604403120257">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

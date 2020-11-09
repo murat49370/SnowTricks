@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-12">{{ form_row(form.title) }}</div>
+    <div class="col-md-12">{{ form_row(form.content) }}</div>
+    <div class="col-md-12">{{ form_row(form.status) }}</div>
+    <div class="col-md-12">{{ form_row(form.main_image) }}</div>
+    <div class="col-md-12">{{ form_row(form.slug) }}</div>
+    <div class="col-md-12">{{ form_row(form.user) }}</div>
+    <div class="col-md-12">{{ form_row(form.trick_group) }}</div>
+
+</div>
+
+<button class="btn btn-primary">{{ button|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}
