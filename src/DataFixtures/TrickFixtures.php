@@ -9,6 +9,7 @@ use App\Entity\TrickGroup;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class TrickFixtures
@@ -16,6 +17,13 @@ use Doctrine\Persistence\ObjectManager;
  */
 class TrickFixtures extends Fixture
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     /**
      * @param ObjectManager $manager
      */
@@ -29,7 +37,7 @@ class TrickFixtures extends Fixture
         $user->setStatus('valide');
         $user->setPseudo('admin');
         $user->setEmail('admin@admin.com');
-        $user->setPassword('1234');
+        $user->setPassword($this->passwordEncoder->encodePassword($user, '1234'));
         $manager->persist($user);
 
         $user2 = new User();
