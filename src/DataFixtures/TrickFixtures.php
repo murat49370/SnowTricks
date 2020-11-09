@@ -46,7 +46,7 @@ class TrickFixtures extends Fixture
         $user2->setRole('admin');
         $user2->setStatus('valide');
         $user2->setPseudo('toto');
-        $user2->setEmail('toto@admin.com');
+        $user2->setEmail('jitewaboh@lagify.com');
         $user2->setPassword('1234');
         $manager->persist($user2);
 
@@ -79,14 +79,23 @@ class TrickFixtures extends Fixture
             $image->setTrick($trick);
             $manager->persist($image);
 
-            for ($j = 1; $j <= rand(5, 15); $j++)
+            for ($j = 1; $j <= rand(3, 10); $j++)
             {
                $comment = new Comment();
                $comment->setTrick($trick);
                $comment->setUser($user);
-               $comment->setStatus('valide');
+               $comment->setStatus('waiting');
                $comment->setContent("Contenue du commentaire N°" . $j);
                $manager->persist($comment);
+            }
+            for ($j = 1; $j <= rand(3, 10); $j++)
+            {
+                $comment = new Comment();
+                $comment->setTrick($trick);
+                $comment->setUser($user2);
+                $comment->setStatus('valide');
+                $comment->setContent("Contenue du commentaire N°" . $j);
+                $manager->persist($comment);
             }
 
         }

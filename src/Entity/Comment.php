@@ -43,7 +43,7 @@ class Comment
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $status;
+    private $status = 'waiting';
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
