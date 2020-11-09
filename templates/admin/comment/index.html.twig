@@ -40,7 +40,6 @@
                     <form method="post" action="{{ path('admin_comment_delete', {id: comment.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiement sûr ?')">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
-
                         <button class="btn btn-danger">Supprimer</button>
                     </form>
 
@@ -49,6 +48,11 @@
             {% endfor %}
             </tbody>
         </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(comments) }}
+            <br>
+        </div>
 
         </div>
 {% endblock %}

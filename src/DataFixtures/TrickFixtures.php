@@ -43,8 +43,8 @@ class TrickFixtures extends Fixture
         $manager->persist($user);
 
         $user2 = new User();
-        $user2->setFirstName('Boulanger');
-        $user2->setLastName('Michel');
+        $user2->setFirstName('Toto');
+        $user2->setLastName('Lacourt');
         $user2->setRole('admin');
         $user2->setStatus('valide');
         $user2->setPseudo('toto');
