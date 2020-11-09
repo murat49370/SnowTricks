@@ -20,17 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d1b3fb4-bc25-4445-ab5f-835f2cd2cb00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminCommentController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/comment/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/comment/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/comment/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/knp_paginator.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SnowTricks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SnowTricks.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TrickController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TrickController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminTrickController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminTrickController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TrickRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TrickRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/trick/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/trick/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/trick/read.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/trick/read.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,6 +152,9 @@
       <path value="$PROJECT_DIR$/vendor/symfony/web-server-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
     </include_path>
   </component>
   <component name="ProjectId" id="1jXgwbPE3ZPvdC0C7xO7vZopUqO" />
@@ -204,7 +208,8 @@
       <workItem from="1604494273259" duration="1569000" />
       <workItem from="1604557029194" duration="127000" />
       <workItem from="1604647600223" duration="26926000" />
-      <workItem from="1604897202506" duration="14910000" />
+      <workItem from="1604897202506" duration="15438000" />
+      <workItem from="1604926193651" duration="4350000" />
     </task>
     <servers />
   </component>

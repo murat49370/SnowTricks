@@ -11,6 +11,7 @@ use App\Repository\TrickRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,21 +45,28 @@ class AdminTrickController extends AbstractController
     }
 
     /**
-     * @route ("/admin/trick", name="admin.trick.index")
+     * @route ("/admin/trick", name="admin_trick_index")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $tricks = $this->repository->findBy(
-            array(), array('create_at' => 'DESC')
+
+        $tricks = $paginator->paginate($this->repository->getAllTricksQuery(),
+            $request->query->getInt('page', 1),
+            10
         );
+//        $tricks = $this->repository->findBy(
+//            array(), array('create_at' => 'DESC')
+//        );
         return $this->render('/admin/trick/index.html.twig', [
             'tricks' => $tricks,
         ]);
     }
 
     /**
-     * @route ("/admin/trick/edit/{id}", name="admin.trick.edit", methods="GET|POST")
+     * @route ("/admin/trick/edit/{id}", name="admin_trick_edit", methods="GET|POST")
      * @param Trick $trick
      * @param Request $request
      * @return Response
@@ -82,8 +90,9 @@ class AdminTrickController extends AbstractController
     }
 
     /**
-     * @route ("/admin/trick/create", name="admin.trick.create")
-     *
+     * @route ("/admin/trick/create", name="admin_trick_create")
+     * @param Request $request
+     * @return RedirectResponse|Response
      */
     public function create(Request $request)
     {
@@ -108,7 +117,7 @@ class AdminTrickController extends AbstractController
     }
 
     /**
-     * @route ("/admin/trick/edite/{id}", name="admin.trick.delete", methods="DELETE")
+     * @route ("/admin/trick/edite/{id}", name="admin_trick_delete", methods="DELETE")
      * @param Trick $trick
      * @param Request $request
      * @return RedirectResponse

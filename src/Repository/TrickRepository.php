@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Trick;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -30,6 +31,18 @@ class TrickRepository extends ServiceEntityRepository
             ->join('t.comments', 'c')
             ->getQuery()
             ->getResult()
+            ;
+    }
+
+    /**
+     * @return Query
+     */
+    public function getAllTricksQuery(): Query
+    {
+        return $this->createQueryBuilder('t')
+            ->addSelect('c')
+            ->join('t.comments', 'c')
+            ->getQuery()
             ;
     }
 
