@@ -305,4 +305,12 @@ class User implements UserInterface, \Serializable
             $this->password
             ) = unserialize($serialized, ['allowed_classes' => false]);
     }
+
+    public function getGravatarURL()
+    {
+        $email = $this->getEmail(); // adresse mail associée au compte
+        $size = 40; // 40x40 pixels
+
+        return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?&s=" . $size;
+    }
 }
