@@ -18,12 +18,16 @@
         <small>Publier le {{ trick.createAt|date("d/m/Y") }}</small>
         <p>{{ trick.content }}</p>
 
+        {% if app.user %}
         {{ form_start(form) }}
             {{ form_row(form.content, {'att': {'placeholder': "Votre commentaire..."}}) }}
             {{ form_row(form.status, { 'attr' : { 'style':'display:none'} }) }}
 
             <button type="submit" class="btn btn-success">Commenter</button>
         {{ form_end(form) }}
+        {% else %}
+        <h3>Connecter vous pour pouvoir écrire un commentaire ! </h3>
+        {% endif %}
 
         <br>
 

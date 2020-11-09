@@ -9,6 +9,7 @@ use App\Entity\TrickGroup;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -29,6 +30,7 @@ class TrickFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create('fr_FR');
 
         $user = new User();
         $user->setFirstName('Boulanger');
@@ -63,8 +65,8 @@ class TrickFixtures extends Fixture
         for ($i = 1; $i <= 25; $i++)
         {
             $trick = new Trick();
-            $trick->setTitle("Trick N°" . $i);
-            $trick->setContent("Contenue du Trick N°" . $i);
+            $trick->setTitle($faker->words(5, true));
+            $trick->setContent($faker->sentence(25, true));
             $trick->setStatus("valide");
             $trick->setMainImage("http://placekitten.com/300/300");
             $trick->setSlug('slug-trick' . $i);
@@ -85,7 +87,7 @@ class TrickFixtures extends Fixture
                $comment->setTrick($trick);
                $comment->setUser($user);
                $comment->setStatus('waiting');
-               $comment->setContent("Contenue du commentaire N°" . $j);
+               $comment->setContent($faker->sentence(15, true));
                $manager->persist($comment);
             }
             for ($j = 1; $j <= rand(3, 10); $j++)
@@ -94,7 +96,7 @@ class TrickFixtures extends Fixture
                 $comment->setTrick($trick);
                 $comment->setUser($user2);
                 $comment->setStatus('valide');
-                $comment->setContent("Contenue du commentaire N°" . $j);
+                $comment->setContent($faker->sentence(15, true));
                 $manager->persist($comment);
             }
 
