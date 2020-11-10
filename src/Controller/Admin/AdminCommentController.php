@@ -124,7 +124,6 @@ class AdminCommentController extends AbstractController
         $this->addFlash('success', 'Commentaire valider avec succès');
         return $this->redirectToRoute('admin_comment_index');
 
-
     }
 
 

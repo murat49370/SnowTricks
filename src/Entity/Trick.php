@@ -98,11 +98,6 @@ class Trick
         $this->images = new ArrayCollection();
     }
 
-//    public function __toString()
-//    {
-//        return (string) $this->getUser();
-//    }
-
 
 
     public function getId(): ?int

@@ -20,22 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d1b3fb4-bc25-4445-ab5f-835f2cd2cb00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminUserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/category/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/category/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/category/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/category/new.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/user/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/user/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/user/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/user/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminCategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminCommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminCommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminTrickController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminTrickController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/comment/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/comment/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminUserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminUserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Trick.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Trick.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TrickGroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TrickGroup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/category/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/category/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/category/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/category/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/category/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/category/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/category/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/category/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/user/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,7 +210,8 @@
       <workItem from="1604557029194" duration="127000" />
       <workItem from="1604647600223" duration="26926000" />
       <workItem from="1604897202506" duration="15438000" />
-      <workItem from="1604926193651" duration="7519000" />
+      <workItem from="1604926193651" duration="10254000" />
+      <workItem from="1604936483604" duration="9437000" />
     </task>
     <servers />
   </component>
@@ -245,10 +243,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2574" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1604126688927" />
-    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604933656857">
+    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604989225584">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1604933656857" />
+    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1604989225584" />
     <state x="2641" y="243" key="NewPhpClassDialog" timestamp="1604403120257">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

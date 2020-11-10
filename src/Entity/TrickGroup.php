@@ -33,6 +33,7 @@ class TrickGroup
 
     /**
      * @ORM\ManyToMany(targetEntity=Trick::class, mappedBy="trick_group")
+     * @ORM\Column(nullable=true)
      */
     private $tricks;
 
@@ -71,9 +72,9 @@ class TrickGroup
     }
 
     /**
-     * @return Collection|Trick[]
+     * @return Collection|Trick[]|null
      */
-    public function getTricks(): Collection
+    public function getTricks(): ?Collection
     {
         return $this->tricks;
     }
@@ -96,4 +97,6 @@ class TrickGroup
 
         return $this;
     }
+
+
 }
