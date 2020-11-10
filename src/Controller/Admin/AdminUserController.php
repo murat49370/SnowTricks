@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Trick;
 use App\Entity\User;
+use App\Form\RegistrationType;
 use App\Form\TrickType;
 use App\Form\UserType;
 use App\Repository\TrickRepository;
@@ -96,7 +97,7 @@ class AdminUserController extends AbstractController
     public function create(Request $request)
     {
         $user = new User();
-        $form = $this->createForm(\App\Form\UserType::class);
+        $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
 

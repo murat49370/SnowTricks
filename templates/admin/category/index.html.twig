@@ -12,7 +12,7 @@
             </div>
         {% endfor %}
 
-        <div class="text-right"><a href="{{ path('admin_trick_create') }}" class="btn btn-primary">Crée un trick</a></div>
+        <div class="text-right"><a href="{{ path('admin_category_create') }}" class="btn btn-primary">Crée une catégorie</a></div>
         <br>
         <table class="table table-striped">
             <thead>
@@ -22,14 +22,14 @@
             </tr>
             </thead>
             <tbody>
-            {% for trick in tricks %}
+            {% for category in categories %}
             <tr>
-                <td>{{ trick.title }}</td>
+                <td>{{ category.title }}</td>
                 <td>
-                    <a href="{{ path('admin_trick_edit', {id: trick.id}) }}" class="btn btn-secondary">Editer</a>
-                    <form method="post" action="{{ path('admin_trick_delete', {id: trick.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiement sûr ?')">
+                    <a href="{{ path('admin_category_edit', {id: category.id}) }}" class="btn btn-secondary">Editer</a>
+                    <form method="post" action="{{ path('admin_category_delete', {id: category.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiement sûr ?')">
                     <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
 
                         <button class="btn btn-danger">Supprimer</button>
                     </form>
@@ -40,10 +40,6 @@
             </tbody>
         </table>
 
-        <div class="navigation">
-            {{ knp_pagination_render(tricks) }}
-            <br>
-        </div>
 
         </div>
 {% endblock %}
