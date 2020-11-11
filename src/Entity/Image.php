@@ -23,15 +23,12 @@ class Image
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $alt;
+
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $url;
+    private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="images")
@@ -56,47 +53,38 @@ class Image
         return $this;
     }
 
-    public function getUrl(): ?string
+
+    public function getTrick(): ?Trick
     {
-        return $this->url;
+        return $this->trick;
     }
 
-    public function setUrl(string $url): self
+    public function setTrick(?Trick $trick): self
     {
-        $this->url = $url;
+        $this->trick = $trick;
 
         return $this;
     }
 
-//    /**
-//     * @return int
-//     */
-//    public function getTrick(): ?int
-//    {
-//        return $this->trick;
-//    }
-//
-//    /**
-//     * @param int $trick
-//     * @return Image
-//     */
-//    public function setTrick($trick)
-//    {
-//        $this->trick = $trick;
-//        return $this;
-//    }
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-public function getTrick(): ?Trick
-{
-    return $this->trick;
-}
+    /**
+     * @param mixed $name
+     * @return Image
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
 
-public function setTrick(?Trick $trick): self
-{
-    $this->trick = $trick;
 
-    return $this;
-}
 
 
 }
