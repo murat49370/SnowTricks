@@ -76,8 +76,7 @@ class TrickFixtures extends Fixture
 
             // Images
             $image = new Image();
-            $image->setUrl('http://placekitten.com/600/300');
-            $image->setAlt('Mon petit chat');
+            $image->setName('http://placekitten.com/600/300');
             $image->setTrick($trick);
             $manager->persist($image);
 
