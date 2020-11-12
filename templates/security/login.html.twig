@@ -5,7 +5,16 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h2>Connexion</h2>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
 
         {% if error %}
             <div class="alert alert-danger">
@@ -13,6 +22,10 @@
             </div>
 
         {% endif %}
+
+        <h2>Connexion</h2>
+
+
 
         <form action="{{ path('login') }}" method="post">
         <div class="form-group">

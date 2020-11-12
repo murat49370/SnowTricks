@@ -7,25 +7,13 @@
     <section class="jarallax bg-dark py-6 py-md-7" data-jarallax data-type="scale-opacity" data-speed="0.09">
         <div class="jarallax-img" style="background-image: url(img/home/hero-snow.jpg);"></div>
         <div class="container py-md-3">
-            <div class="row">
-                <div class="col-xl-7 col-lg-8 col-md-10">
-                    <div class="bg-light rounded-lg box-shadow-lg py-5 px-4">
+            <div class="row justify-content-md-center">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class=" rounded-lg box-shadow-lg py-5">
                         <form class="py-sm-2 px-sm-3">
-                            <h1 class="text-center mb-4">Reserve your spot</h1>
+                            <h1 class="text-center text-white mb-4">Bienvenue sur SnowTricks</h1>
                             <div class="row">
-                                <div class="col-sm-6 form-group">
-                                    <label class="form-label" for="rf-space">Space</label>
-                                    <select class="fotm-control custom-select" id="rf-space">
-                                        <option value="Coworking main room">Coworking main room</option>
-                                        <option value="Coworking terrace">Coworking terrace</option>
-                                        <option value="Skype room 1" selected>Skype room 1</option>
-                                        <option value="Skype room 2">Skype room 2</option>
-                                        <option value="Meeting room 1">Meeting room 1</option>
-                                        <option value="Meeting room 2">Meeting room 2</option>
-                                        <option value="Gaming room">Gaming room</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-6 form-group">
+                                <div class="col-sm-12 form-group">
                                     <label class="form-label" for="rf-date">Date and time</label>
                                     <div class="input-group-overlay">
                                         <input class="form-control appended-form-control cs-date-picker" type="text" placeholder="Choose date / time" data-datepicker-options="{&quot;enableTime&quot;: true, &quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;F j, Y H:i&quot;, &quot;dateFormat&quot;: &quot;Y-m-d H:i&quot;, &quot;minDate&quot;: &quot;today&quot;}" id="rf-date">
@@ -53,14 +41,10 @@
             </div>
         </div>
     </section>
-    <!-- About (Services)-->
-    <section class="container mt-4 pt-5 mt-md-2 pt-md-7 pb-6">
-        <a class="nav-link" href="#">
-            <i class="fa fa-home btn-primary"></i>
-            <span class="sr-only">(current)</span>
-        </a>
+    <!-- List Tricks-->
+    <section class="bg-secondary d-flex justify-content-center mt-4 py-5 my-md-0 pt-md-7 pb-md-6" >
         <div class="container">
-            <div class="row">
+            <div class="row d-flex justify-content-center">
                 {% for trick in tricks %}
                     <div class=" card col-md-2 m-1 pr-0 pl-0">
                         <img src="{{ trick.mainImage }}" class="card-img-top m-0"  alt="...">
@@ -87,296 +71,11 @@
                 {% endfor %}
             </div>
         </div>
-        <h2 class="text-center mb-3">About Around</h2>
-        {{ request }}
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-
-        </div>
+    </section>
 
 
-        <div class="row justify-content-center mb-5 pb-2">
-            <div class="col-xl-6 col-lg-7">
-                <p class="text-center mb-0">Find aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-        </div>
-        <div class="cs-carousel">
-            <div class="cs-carousel-inner" data-carousel-options="{&quot;items&quot;: 5, &quot;controls&quot;: false, &quot;gutter&quot;: 15, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:2}, &quot;410&quot;:{&quot;items&quot;:3}, &quot;580&quot;:{&quot;items&quot;:4}, &quot;740&quot;:{&quot;items&quot;:5}}}">
-                <div class="text-center"><img class="mb-3" width="54" src="img/demo/coworking/icons/cube.svg" alt="Total Area"/>
-                    <div class="text-muted" style="font-size: 2.25rem;">362</div>
-                    <h3 class="h5">Total Area</h3>
-                </div>
-                <div class="text-center"><img class="mb-3" width="54" src="img/demo/coworking/icons/shower.svg" alt="Showers"/>
-                    <div class="text-muted" style="font-size: 2.25rem;">5</div>
-                    <h3 class="h5">Showers</h3>
-                </div>
-                <div class="text-center"><img class="mb-3" width="54" src="img/demo/coworking/icons/24-hours.svg" alt="24/7 Access"/>
-                    <div class="text-muted" style="font-size: 2.25rem;">24/7</div>
-                    <h3 class="h5">Access</h3>
-                </div>
-                <div class="text-center"><img class="mb-3" width="54" src="img/demo/coworking/icons/building.svg" alt="3 Full Floors"/>
-                    <div class="text-muted" style="font-size: 2.25rem;">3</div>
-                    <h3 class="h5">Full Floors</h3>
-                </div>
-                <div class="text-center"><img class="mb-3" width="54" src="img/demo/coworking/icons/parking.svg" alt="Parking"/>
-                    <div class="text-muted" style="font-size: 2.25rem;">2</div>
-                    <h3 class="h5">Car Parking</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Virtual tour-->
-    <section class="jarallax bg-dark py-7" data-jarallax data-speed="0.25">
-        <div class="jarallax-img" style="background-image: url(img/demo/coworking/virtual-tour-bg.jpg);"></div>
-        <div class="container text-center py-md-5"><a class="d-inline-block bg-primary rounded-circle" href="#"><img width="195" src="img/demo/coworking/icons/360-tour.svg" alt="360 VR Tour"/></a></div>
-    </section>
-    <!-- Pricing-->
-    <section class="container mb-3 mt-4 py-5 my-md-0 pt-md-7 pb-md-6">
-        <h2 class="text-center mb-5">Pricing</h2>
-        <div class="d-flex align-items-center justify-content-between border rounded mx-auto mb-5 py-3 px-5" style="max-width: 730px;"><i class="fe-clock lead text-primary p-2"></i>
-            <h5 class="p-2 mb-0">2 hours - $6</h5>
-            <h5 class="p-2 mb-0">4 hours - $10</h5>
-            <h5 class="p-2 mb-0">1 day - $18</h5>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
-                <div class="card border-0 box-shadow w-100">
-                    <div class="card-img-top bg-secondary text-center py-5 px-grid-gutter">
-                        <h3 class="text-body mb-0">Starter</h3>
-                    </div>
-                    <div class="card-body px-grid-gutter py-grid-gutter">
-                        <div class="d-flex align-items-end py-2 px-4 mb-4"><span class="h2 font-weight-normal text-muted mb-1 mr-2">$</span><span class="cs-price display-2 font-weight-normal text-primary px-1 mr-2">35</span><span class="h3 font-size-lg font-weight-medium text-muted mb-2">per<br>month</span></div>
-                        <ul class="list-unstyled py-2 mb-4">
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>24/7 Premises access</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>High speeed WiFi</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>Car parking lot</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>Lounge room access</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-x font-size-xl text-muted mr-2"></i><span class="text-muted">3 events / workshops per month</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-x font-size-xl text-muted mr-2"></i><span class="text-muted">Breakfasts</span></li>
-                        </ul>
-                        <div class="text-center mb-2"><a class="btn btn-outline-primary" href="#">Get started</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
-                <div class="card card-active w-100">
-                    <div class="card-img-top bg-gradient text-center py-5 px-grid-gutter">
-                        <h3 class="text-light mb-0">Freelancer</h3>
-                    </div>
-                    <div class="card-body px-grid-gutter py-grid-gutter">
-                        <div class="d-flex align-items-end py-2 px-4 mb-4"><span class="h2 font-weight-normal text-muted mb-1 mr-2">$</span><span class="cs-price display-2 font-weight-normal text-primary px-1 mr-2">99</span><span class="h3 font-size-lg font-weight-medium text-muted mb-2">per<br>month</span></div>
-                        <ul class="list-unstyled py-2 mb-4">
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>24/7 Premises access</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>High speeed WiFi</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>Car parking lot</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>Lounge room access</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>3 events / workshops per month</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-x font-size-xl text-muted mr-2"></i><span class="text-muted">Breakfasts</span></li>
-                        </ul>
-                        <div class="text-center mb-2"><a class="btn btn-primary" href="#">Get started</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
-                <div class="card border-0 box-shadow w-100">
-                    <div class="card-img-top bg-secondary text-center py-5 px-grid-gutter">
-                        <h3 class="text-body mb-0">Resident Full</h3>
-                    </div>
-                    <div class="card-body px-grid-gutter py-grid-gutter">
-                        <div class="d-flex align-items-end py-2 px-4 mb-4"><span class="h2 font-weight-normal text-muted mb-1 mr-2">$</span><span class="cs-price display-2 font-weight-normal text-primary px-1 mr-2">124</span><span class="h3 font-size-lg font-weight-medium text-muted mb-2">per<br>month</span></div>
-                        <ul class="list-unstyled py-2 mb-4">
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>24/7 Premises access</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>High speeed WiFi</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>Car parking lot</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>Lounge room access</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>3 events / workshops per month</span></li>
-                            <li class="d-flex align-items-center mb-3"><i class="fe-check font-size-xl text-primary mr-2"></i><span>Breakfasts</span></li>
-                        </ul>
-                        <div class="text-center mb-2"><a class="btn btn-outline-primary" href="#">Get started</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Gallery-->
-    <section class="bg-secondary py-5 py-md-6">
-        <div class="container mt-4 mb-2 mt-md-2 mb-md-0">
-            <h2 class="text-center mb-4 pb-2">Our space</h2>
-            <div class="cs-masonry-filterable">
-                <ul class="cs-masonry-filters nav nav-tabs justify-content-center pb-4">
-                    <li class="nav-item"><a class="nav-link active" href="#" data-group="all">All</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-group="open-space">Open space</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-group="lounge">Lounge zone</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-group="kitchen">Kitchen</a></li>
-                </ul>
-                <div class="cs-masonry-grid cs-gallery overflow-hidden" data-columns="3">
-                    <div class="cs-grid-item" data-groups="[&quot;lounge&quot;]"><a class="cs-gallery-item rounded-lg" href="img/demo/coworking/gallery/01.jpg" data-sub-html="&lt;h6 class=&quot;font-size-sm text-light&quot;&gt;Lounge room&lt;/h6&gt;"><img src="img/demo/coworking/gallery/th01.jpg" alt="Lounge room"/><span class="cs-gallery-caption">Lounge room</span></a></div>
-                    <div class="cs-grid-item" data-groups="[&quot;open-space&quot;]"><a class="cs-gallery-item rounded-lg" href="img/demo/coworking/gallery/02.jpg" data-sub-html="&lt;h6 class=&quot;font-size-sm text-light&quot;&gt;Open space&lt;/h6&gt;"><img src="img/demo/coworking/gallery/th02.jpg" alt="Open space"/><span class="cs-gallery-caption">Open space</span></a></div>
-                    <div class="cs-grid-item" data-groups="[&quot;open-space&quot;]"><a class="cs-gallery-item rounded-lg" href="img/demo/coworking/gallery/03.jpg" data-sub-html="&lt;h6 class=&quot;font-size-sm text-light&quot;&gt;Open space&lt;/h6&gt;"><img src="img/demo/coworking/gallery/th03.jpg" alt="Open space"/><span class="cs-gallery-caption">Open space</span></a></div>
-                    <div class="cs-grid-item" data-groups="[&quot;kitchen&quot;]"><a class="cs-gallery-item rounded-lg" href="img/demo/coworking/gallery/04.jpg" data-sub-html="&lt;h6 class=&quot;font-size-sm text-light&quot;&gt;Kitchen&lt;/h6&gt;"><img src="img/demo/coworking/gallery/th04.jpg" alt="Kitchen"/><span class="cs-gallery-caption">Kitchen</span></a></div>
-                    <div class="cs-grid-item" data-groups="[&quot;kitchen&quot;]"><a class="cs-gallery-item rounded-lg" href="img/demo/coworking/gallery/05.jpg" data-sub-html="&lt;h6 class=&quot;font-size-sm text-light&quot;&gt;Kitchen&lt;/h6&gt;"><img src="img/demo/coworking/gallery/th05.jpg" alt="Kitchen"/><span class="cs-gallery-caption">Kitchen</span></a></div>
-                    <div class="cs-grid-item" data-groups="[&quot;open-space&quot;]"><a class="cs-gallery-item rounded-lg" href="img/demo/coworking/gallery/06.jpg" data-sub-html="&lt;h6 class=&quot;font-size-sm text-light&quot;&gt;Open space&lt;/h6&gt;"><img src="img/demo/coworking/gallery/th06.jpg" alt="Open space"/><span class="cs-gallery-caption">Open space</span></a></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Benefits-->
-    <section class="container pb-5 pt-6 mb-md-2 py-md-7">
-        <div class="row align-items-center">
-            <div class="col-md-6"><img class="d-block mx-auto" src="img/demo/coworking/illustration01.svg" alt="Illustration"/>
-            </div>
-            <div class="col-md-6 col-lg-5 offset-lg-1 pt-4 pt-md-0">
-                <h2 class="mt-4 mb-5 text-center text-md-left">Our benefits</h2>
-                <div class="row">
-                    <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2" width="46" src="img/demo/coworking/icons/tv.svg" alt="Free computer"/>
-                        <h5 class="h6">Free computer</h5>
-                    </div>
-                    <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2" width="46" src="img/demo/coworking/icons/sandwich.svg" alt="Coffee and snacks"/>
-                        <h5 class="h6">Coffee and snacks</h5>
-                    </div>
-                    <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2" width="46" src="img/demo/coworking/icons/table-tennis.svg" alt="Relax zone"/>
-                        <h5 class="h6">Relax zone</h5>
-                    </div>
-                    <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2" width="46" src="img/demo/coworking/icons/living-room.svg" alt="Private meeting room"/>
-                        <h5 class="h6">Private meeting room</h5>
-                    </div>
-                    <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2" width="46" src="img/demo/coworking/icons/router.svg" alt="High-speed internet"/>
-                        <h5 class="h6">High-speed internet</h5>
-                    </div>
-                    <div class="col-6 col-sm-4 text-center mb-grid-gutter"><img class="mb-2" width="46" src="img/demo/coworking/icons/open-book.svg" alt="Educational programs"/>
-                        <h5 class="h6">Educational programs</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Testimonials-->
-    <section class="container pb-5 mb-md-4 pb-md-7">
-        <div class="row align-items-center">
-            <div class="col-md-6 offset-lg-1 order-md-2"><img class="d-block mx-auto" src="img/demo/coworking/illustration02.svg" alt="Illustration"/>
-            </div>
-            <div class="col-md-6 col-lg-5 order-md-1 pt-4 pt-md-0">
-                <h2 class="mt-4 mb-5 text-center text-md-left">What people say about us</h2>
-                <div class="cs-carousel">
-                    <div class="cs-carousel-inner" data-carousel-options="{&quot;nav&quot;: false, &quot;gutter&quot;: 20}">
-                        <div class="pt-3">
-                            <blockquote class="blockquote mx-1">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida commodo consequat.</p>
-                                <footer class="blockquote-footer">Miguel Sánchez</footer>
-                            </blockquote>
-                        </div>
-                        <div class="pt-3">
-                            <blockquote class="blockquote mx-1">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida commodo consequat.</p>
-                                <footer class="blockquote-footer">Sarah Paulson</footer>
-                            </blockquote>
-                        </div>
-                        <div class="pt-3">
-                            <blockquote class="blockquote mx-1">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida commodo consequat.</p>
-                                <footer class="blockquote-footer">Tim Brooks</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Events-->
-    <section class="position-relative bg-gradient pt-6 pb-7" style="z-index: 2;">
-        <div class="container pb-5">
-            <h2 class="text-light text-center pb-1 mb-5">Upcoming events</h2>
-        </div>
-    </section>
-    <div class="bg-overlay-content container" style="margin-top: -150px;">
-        <div class="cs-carousel">
-            <div class="cs-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;nav&quot;: false, &quot;gutter&quot;: 23, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;800&quot;:{&quot;items&quot;:2}}}">
-                <div class="pb-2">
-                    <div class="card h-100 border-0 box-shadow mx-1"><span class="badge badge-lg badge-floating badge-floating-right badge-success">New</span>
-                        <div class="card-body py-5 px-4">
-                            <div class="d-sm-flex py-sm-4 px-lg-3">
-                                <div class="text-sm-center mt-0 mt-sm-n3"><span class="d-sm-block text-primary mr-2 mr-sm-0 mb-n3" style="font-size: 3.75rem;">06</span><span class="font-size-xl text-muted text-uppercase">Aug</span></div>
-                                <div class="pl-sm-4 pl-lg-5"><a class="meta-link font-size-sm mb-2" href="#">Open lecture</a>
-                                    <h3 class="h4 nav-heading mb-4"><a href="#">The Single Most Important Thing You Need to Know About</a></h3><a class="media meta-link font-size-sm align-items-center pt-2" href="#"><img class="rounded-circle" width="42" src="img/testimonials/02.jpg" alt="Sanomi Smith"/>
-                                        <div class="media-body pl-2 ml-1 mt-n1">by<span class="font-weight-semibold ml-1">Sanomi Smith</span></div></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pb-2">
-                    <div class="card h-100 border-0 box-shadow mx-1">
-                        <div class="card-body py-5 px-4">
-                            <div class="d-sm-flex py-sm-4 px-lg-3">
-                                <div class="text-sm-center mt-0 mt-sm-n3"><span class="d-sm-block text-primary mr-2 mr-sm-0 mb-n3" style="font-size: 3.75rem;">24</span><span class="font-size-xl text-muted text-uppercase">Jul</span></div>
-                                <div class="pl-sm-4 pl-lg-5"><a class="meta-link font-size-sm mb-2" href="#">Worksop</a>
-                                    <h3 class="h4 nav-heading mb-4"><a href="#">Learn Exactly How I Improved Personal Finance in 2 Days</a></h3><a class="media meta-link font-size-sm align-items-center pt-2" href="#"><img class="rounded-circle" width="42" src="img/testimonials/04.jpg" alt="Charlie Welch"/>
-                                        <div class="media-body pl-2 ml-1 mt-n1">by<span class="font-weight-semibold ml-1">Charlie Welch</span></div></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pb-2">
-                    <div class="card h-100 border-0 box-shadow mx-1">
-                        <div class="card-body py-5 px-4">
-                            <div class="d-sm-flex py-sm-4 px-lg-3">
-                                <div class="text-sm-center mt-0 mt-sm-n3"><span class="d-sm-block text-primary mr-2 mr-sm-0 mb-n3" style="font-size: 3.75rem;">15</span><span class="font-size-xl text-muted text-uppercase">Jun</span></div>
-                                <div class="pl-sm-4 pl-lg-5"><a class="meta-link font-size-sm mb-2" href="#">Open discussion</a>
-                                    <h3 class="h4 nav-heading mb-4"><a href="#">How technological advancements affect our decisions</a></h3><a class="media meta-link font-size-sm align-items-center pt-2" href="#"><img class="rounded-circle" width="42" src="img/testimonials/09.jpg" alt="Jessica Miller"/>
-                                        <div class="media-body pl-2 ml-1 mt-n1">by<span class="font-weight-semibold ml-1">Jessica Miller</span></div></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Contacts-->
-    <section class="bg-secondary" style="margin-top: -300px; padding-top: 300px;">
-        <div class="container pt-5 pb-6 py-md-7">
-            <h2 class="text-center mb-5">Contacts</h2>
-            <div class="row">
-                <div class="col-md-6 mb-5 mb-md-0">
-                    <form class="needs-validation mb-4 pb-2" novalidate>
-                        <div class="input-group-overlay form-group">
-                            <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="fe-user"></i></span></div>
-                            <input class="form-control prepended-form-control" type="text" placeholder="Name" required>
-                        </div>
-                        <div class="input-group-overlay form-group">
-                            <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="fe-mail"></i></span></div>
-                            <input class="form-control prepended-form-control" type="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="4" placeholder="Message" required></textarea>
-                        </div>
-                        <div class="row pt-2">
-                            <div class="col-sm-6">
-                                <button class="btn btn-primary btn-block" type="submit">Send Request</button>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h5>Around office</h5>
-                            <ul class="list-unstyled mb-0">
-                                <li class="mb-0">396 Lillian Blvd, Holbrook</li>
-                                <li class="mb-0">New York, USA</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6">
-                            <h5>Collaboration</h5>
-                            <ul class="list-unstyled mb-0">
-                                <li class="mb-0">+ 1 526 220 0459</li>
-                                <li class="mb-0">contact@example.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-5 offset-xl-1 cs-gallery"><a class="cs-gallery-item cs-map-popup border rounded-lg" href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.91476818218!2d-74.11976253858133!3d40.69740344296443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sua!4v1568574342685!5m2!1sen!2sua" data-iframe="true" data-sub-html="&lt;h6 class=&quot;font-size-sm text-light&quot;&gt;396 Lillian Blvd, Holbrook, NY 11741&lt;/h6&gt;"><img src="img/demo/coworking/map.jpg" alt="Maps"/><span class="cs-gallery-caption"><i class="fe-maximize-2 font-size-xl mt-n1 mr-2"></i>Expand the map</span>
-                        <div class="position-absolute" style="width: 48px; top: 50%; left: 50%; margin-top: -24px; margin-left: -24px;"><img src="img/pages/contacts/marker.png" alt="Map marker"/>
-                        </div></a></div>
-            </div>
-        </div>
-    </section>
+
+
+
+
 {% endblock %}
