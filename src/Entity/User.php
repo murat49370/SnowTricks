@@ -64,9 +64,9 @@ class User implements UserInterface, \Serializable
     private $registred_at;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $role = 'user';
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -178,18 +178,29 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getRole(): ?string
+
+    public function getRoles(): array
     {
-        return $this->role;
+        $roles =$this->roles;
+
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function setRole(string $role): self
+    /**
+     * @param array $roles
+     * @return $this
+     */
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
-
+        $this->roles = $roles;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
@@ -262,13 +273,6 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return string[]
-     */
-    public function getRoles()
-    {
-        return ['ROLE_ADMIN'];
-    }
 
     /**
      * @return string|null

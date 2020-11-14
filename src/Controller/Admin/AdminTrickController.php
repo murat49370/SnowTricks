@@ -154,12 +154,13 @@ class AdminTrickController extends AbstractController
                 $trick->addImage($img);
             }
 
-            // on récupere les video
             $video = $form->get('videos')->getData();
-
-            $vid = new Video();
-            $vid->setUrl($video);
-            $trick->addVideo($vid);
+            if ($video)
+            {
+                $vid = new Video();
+                $vid->setUrl($video);
+                $trick->addVideo($vid);
+            }
 
             $this->em->persist($trick);
             $this->em->flush();

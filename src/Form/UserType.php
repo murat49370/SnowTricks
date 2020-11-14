@@ -22,16 +22,22 @@ class UserType extends AbstractType
             ->add('last_name')
             ->add('pseudo')
             //->add('registred_at')
-            ->add('role', ChoiceType::class, [
-                'choices'  => [
-                    'user' => 'user',
-                    'admin' => 'admin'
-                ]])
             ->add('status', ChoiceType::class, [
                 'choices'  => [
                     'Valide' => 'Valide',
                     'En attente' => 'waiting'
-                ]])
+                ],
+                'multiple' => false
+            ])
+            ->add('roles', ChoiceType::class, [
+                'choices'  => [
+                    'User' => 'ROLE_USER',
+                    'Admin' => 'ROLE_ADMIN'
+                ],
+                'expanded'  => false, // liste déroulante
+                'multiple'  => true // choix multiple
+                ])
+
         ;
     }
 

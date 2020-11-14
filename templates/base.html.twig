@@ -57,7 +57,7 @@
     </div>
 
     <!-- Administration navbar -->
-    {% if app.user and app.user.role == "admin" %}
+    {% if is_granted('ROLE_ADMIN') %}
         <header>
             <div class="bg-dark">
                 <div class="container-fluid pl-5 pr-5">
@@ -107,13 +107,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/tricks">Tricks <span class="sr-only"></span></a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/inscription">Inscription <span class="sr-only"></span></a>
-                                </li>
                                 {% if not app.user %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/login">login <span class="sr-only"></span></a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/inscription">Inscription <span class="sr-only"></span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/login">login <span class="sr-only"></span></a>
+                                    </li>
                                 {% else %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="/logout">logout <span class="sr-only"></span></a>

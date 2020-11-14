@@ -35,7 +35,7 @@ class TrickFixtures extends Fixture
         $user = new User();
         $user->setFirstName('Boulanger');
         $user->setLastName('Michel');
-        $user->setRole('admin');
+        $user->setRoles(["ROLE_ADMIN"]) ;
         $user->setStatus('valide');
         $user->setPseudo('admin');
         $user->setEmail('admin@admin.com');
@@ -45,7 +45,7 @@ class TrickFixtures extends Fixture
         $user2 = new User();
         $user2->setFirstName('Toto');
         $user2->setLastName('Lacourt');
-        $user2->setRole('admin');
+        //$user2->setRole('admin');
         $user2->setStatus('valide');
         $user2->setPseudo('toto');
         $user2->setEmail('jitewaboh@lagify.com');
