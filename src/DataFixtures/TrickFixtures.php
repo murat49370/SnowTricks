@@ -68,17 +68,19 @@ class TrickFixtures extends Fixture
             $trick->setTitle($faker->words(5, true));
             $trick->setContent($faker->sentence(25, true));
             $trick->setStatus("valide");
-            $trick->setMainImage("http://placekitten.com/300/300");
+            //$trick->setMainImage("http://placekitten.com/300/150");
             $trick->setSlug('slug-trick' . $i);
             $trick->setUser($user);
             $trick->addTrickGroup($trickGroup1);
             $manager->persist($trick);
 
+
             // Images
-            $image = new Image();
-            $image->setName('http://placekitten.com/600/300');
-            $image->setTrick($trick);
-            $manager->persist($image);
+
+//            $image = new Image();
+//            $image->setName('http://placekitten.com/600/300');
+//            $image->setTrick($trick);
+//            $manager->persist($image);
 
             for ($j = 1; $j <= rand(3, 10); $j++)
             {

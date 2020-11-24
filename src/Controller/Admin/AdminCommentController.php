@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Comment;
 use App\Entity\Trick;
+use App\Form\AdminCommentType;
 use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Repository\CommentRepository;
@@ -74,7 +75,7 @@ class AdminCommentController extends AbstractController
      */
     public function edit(Comment $comment, Request $request)
     {
-        $form = $this->createForm(CommentType::class, $comment);
+        $form = $this->createForm(AdminCommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())

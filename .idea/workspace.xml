@@ -20,16 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d1b3fb4-bc25-4445-ab5f-835f2cd2cb00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/Profile/ProfileHomeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/User/UserTrickController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/AdminCommentType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/UserTrickType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/profile/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/profile/sidebar.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/profile/tricks.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/trick/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/web_profiler.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/web_profiler.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminCommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminCommentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminTrickController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AdminTrickController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TrickController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TrickController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TrickFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Trick.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Trick.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CommentType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CommentType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/TrickType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TrickType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/trick/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/trick/_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/trick/read.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/trick/read.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/forms.fr.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/forms.fr.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,24 +185,26 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.jetbrains.php.lang.actions.generation.PhpGenerateFieldAccessorHandlerBase$MyMemberChooser.fluent.setters.last.selected" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Controller/Admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fr.dic" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="DEFAULT" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Murat\Desktop\SnowTricks\src\Controller\Admin" />
-      <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\admin" />
-      <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\admin\trick" />
-      <recent name="C:\Users\Murat\Desktop\SnowTricks\src\DataFixtures" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\security" />
       <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\security\security" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Murat\Desktop\SnowTricks\src\Form" />
+      <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\trick" />
+      <recent name="C:\Users\Murat\Desktop\SnowTricks\src\Controller" />
+      <recent name="C:\Users\Murat\Desktop\SnowTricks\src\Controller\Admin" />
+      <recent name="C:\Users\Murat\Desktop\SnowTricks\templates\admin" />
+    </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="1" Folder0="C:\Users\Murat\Desktop" CustomDictionaries="1" CustomDictionary0="C:\Users\Murat\Desktop\fr.dic" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="5d1b3fb4-bc25-4445-ab5f-835f2cd2cb00" name="Default Changelist" comment="" />
@@ -214,7 +231,12 @@
       <workItem from="1605079253104" duration="2208000" />
       <workItem from="1605169562032" duration="19561000" />
       <workItem from="1605257247699" duration="895000" />
-      <workItem from="1605342006065" duration="7581000" />
+      <workItem from="1605342006065" duration="8595000" />
+      <workItem from="1605585596230" duration="11490000" />
+      <workItem from="1606105386669" duration="45000" />
+      <workItem from="1606106601904" duration="27408000" />
+      <workItem from="1606197946572" duration="2663000" />
+      <workItem from="1606212711974" duration="8744000" />
     </task>
     <servers />
   </component>
@@ -242,18 +264,30 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2685" y="236" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1605342569599" />
-    <state x="2574" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604126688927">
+    <state x="2574" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606109418632">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2574" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1604126688927" />
-    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605006063251">
+    <state x="2574" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1606109418632" />
+    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605592870483">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1605006063251" />
+    <state x="2610" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1605592870483" />
+    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1606211673397">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2660" y="275" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1606211673397" />
     <state x="2641" y="243" key="NewPhpClassDialog" timestamp="1604403120257">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2641" y="243" key="NewPhpClassDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1604403120257" />
+    <state x="2714" y="443" key="NewPhpFileDialog" timestamp="1605586441705">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2714" y="443" key="NewPhpFileDialog/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1605586441705" />
+    <state x="2381" y="165" key="SettingsEditor" timestamp="1606211677267">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2381" y="165" key="SettingsEditor/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1606211677267" />
     <state x="2587" y="119" width="585" height="801" key="find.popup" timestamp="1605342386465">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

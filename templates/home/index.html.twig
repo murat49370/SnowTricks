@@ -3,6 +3,7 @@
 {% block title %}Bienvenue sur SnowTricks{% endblock %}
 
 {% block body %}
+
     <!-- Hero-->
     <section class="jarallax bg-dark py-6 py-md-7" data-jarallax data-type="scale-opacity" data-speed="0.09">
         <div class="jarallax-img" style="background-image: url(img/home/hero-snow.jpg);"></div>
@@ -43,26 +44,28 @@
     </section>
     <!-- List Tricks-->
     <section class="bg-secondary d-flex justify-content-center mt-4 py-5 my-md-0 pt-md-7 pb-md-6" >
-        <div class="container">
+        <div class="container-fluid">
             <div class="row d-flex justify-content-center">
                 {% for trick in tricks %}
                     <div class=" card col-md-2 m-1 pr-0 pl-0">
-                        <img src="{{ trick.mainImage }}" class="card-img-top m-0"  alt="...">
+                        <img src="{{ asset('uploads/images/') }}{% if trick.mainImage %}{{ trick.mainImage.name }}{% else %}default_main_image.jpeg{% endif %}" class="card-img-top m-0" alt="...">
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h5 class="card-title">{{ trick.title }}</h5>
-                                    <a href="{{ path('trick_read', { id: trick.id }) }}">Voir</a>
-                                    <br>
-                                    <small>{{ trick.comments|length }} commentaires</small>
+                                    <h5 class="card-title"><a href="{{ path('trick_read', { id: trick.id }) }}">{{ trick.title }}</a></h5>
                                 </div>
                                 <div class="col-lg-4">
-                                    <a class="inline" href="#">
-                                        <i class="fe-edit-2"></i>
-                                    </a>
-                                    <a class="inline" href="#">
-                                        <i class="fe-trash"></i>
-                                    </a>
+                                    {% if app.user %}
+                                        {% if app.user.id == trick.user.id %}
+                                            <a class="inline" href="{{ path('user_trick_edit', {id: trick.id}) }}">
+                                                <i class="fe-edit-2"></i>
+                                            </a>
+                                            <a class="inline" href="#">
+                                                <i class="fe-trash"></i>
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+
                                 </div>
                             </div>
 

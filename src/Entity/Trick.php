@@ -49,10 +49,6 @@ class Trick
      */
     private $status;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $main_image;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -85,7 +81,10 @@ class Trick
      */
     private $images;
 
-
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, inversedBy="mainImage", cascade={"persist", "remove"})
+     */
+    private $main_image;
 
 
     public function __construct()
@@ -97,7 +96,6 @@ class Trick
         $this->videos = new ArrayCollection();
         $this->images = new ArrayCollection();
     }
-
 
 
     public function getId(): ?int
@@ -164,19 +162,6 @@ class Trick
 
         return $this;
     }
-
-    public function getMainImage(): ?string
-    {
-        return $this->main_image;
-    }
-
-    public function setMainImage(string $main_image): self
-    {
-        $this->main_image = $main_image;
-
-        return $this;
-    }
-
 
     public function getSlug(): ?string
     {
@@ -313,6 +298,18 @@ class Trick
                 $image->setTrick(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMainImage(): ?Image
+    {
+        return $this->main_image;
+    }
+
+    public function setMainImage(?Image $main_image): self
+    {
+        $this->main_image = $main_image;
 
         return $this;
     }

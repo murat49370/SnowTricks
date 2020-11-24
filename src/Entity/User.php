@@ -323,7 +323,7 @@ class User implements UserInterface, \Serializable
     public function getGravatarURL()
     {
         $email = $this->getEmail(); // adresse mail associée au compte
-        $size = 40; // 40x40 pixels
+        $size = 110; // 40x40 pixels
 
         return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?&s=" . $size;
     }

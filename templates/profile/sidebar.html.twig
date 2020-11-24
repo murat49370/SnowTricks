@@ -1,0 +1,20 @@
+<div class="col-lg-4 mb-4 mb-lg-0">
+    <div class="bg-light rounded-lg box-shadow-lg">
+        <div class="px-4 py-4 mb-1 text-center"><img class="d-block rounded-circle mx-auto my-2" src="{{ app.user.gravatarurl }}" alt="Amanda Wilson"/>
+            <h6 class="mb-0 pt-1">{{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h6>
+            <span class="text-muted font-size-sm">@{{ app.user.pseudo }}</span>
+        </div>
+        <div class="d-lg-none px-4 pb-4 text-center"><a class="btn btn-primary px-5 mb-2" href="#account-menu" data-toggle="collapse"><i class="fe-menu mr-2"></i>Account menu</a></div>
+        <div class="d-lg-block collapse pb-2" id="account-menu">
+            <h3 class="d-block bg-secondary font-size-sm font-weight-semibold text-muted mb-0 px-4 py-3">Account settings</h3>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 active" href="account-profile.html">Profile info</a>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="/profile/tricks">Mes tricks</a>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('profile_edit') }}">Edite profile</a>
+
+            <div class="d-flex align-items-center border-top">
+                <a class="d-block w-100 nav-link-style px-4 py-3" href="account-notifications.html">Notifications</a>
+            </div>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="signin-illustration.html"><i class="fe-log-out font-size-lg opacity-60 mr-2"></i>Déconnexion</a>
+        </div>
+    </div>
+</div>
