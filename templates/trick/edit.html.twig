@@ -6,22 +6,40 @@
 
 
     {{ form_start(form) }}
-    <div class="container mt-5 pr-0 pl-0">
+    <div class="container mt-5 mb-5 pr-0 pl-0">
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
 
-        <header class="jarallax bg-dark py-6 py-md-7 " data-jarallax data-type="scale-opacity" data-speed="0.09">
-            <div class="jarallax-img px-0" style="background-image: url(img/home/hero-snow.jpg);"></div>
+        <header class="jarallax bg-dark" data-jarallax data-type="scale-opacity" data-speed="0.09">
+
+            <div class="jarallax-img px-0" style="background-image: url(
+            {% if trick.mainImage %}
+                {{ asset('uploads/images/' ~ trick.mainImage.name ) }}
+            {% else %}
+                {{ asset('uploads/images/default.jpg') }}
+            {% endif %}
+
+            );"></div>
+            <div class="container">
+                <div class="d-flex flex-row-reverse align-items-start">
+                    <div class="row border m-2" style="background: #ffffff" >
+                        <div class="m-2">
+                            <a class="inline" href="#"><i class="fe-edit-2"></i></a>
+                        </div>
+                        <div class="m-2">
+                            <a class="inline" href="#"><i class="fe-trash"></i></a>
+                        </div>
+
+                    </div>
+            </div>
             <div class="container py-md-3">
                 <div class="row justify-content-md-center">
                     <div class="col-xl-6 col-lg-6 col-md-6">
                         <div class=" rounded-lg box-shadow-lg py-5">
-                            <div class="py-sm-2 px-sm-3">
-                                <h1 class="text-center text-white mb-5 py-5">{{ form_row(form.title) }}</h1>
-                            </div>
+                            <h1 class="text-center text-white mb-5 py-5">{{ trick.title }}</h1>
                         </div>
                     </div>
                 </div>
@@ -31,9 +49,22 @@
 
 
     <div class="container border border-secondary pt-4">
-        <!-- Section medias -->
 
-        {% if app.request.attributes.get('_route') == 'user_trick_edit' %}
+        {{ form_row(form.title) }}
+
+        <!-- Section medias edit -->
+        <section>
+            <div class="row">
+                <div class="col-6">
+                    {{ form_row(form.images) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.videos) }}
+                </div>
+            </div>
+        </section>
+
+        <!-- Section medias view -->
         <section>
             <div class="row">
                 {% for image in trick.images %}
@@ -52,10 +83,9 @@
                 {% endfor %}
             </div>
         </section>
-        {% endif %}
 
         <!-- Trick content -->
-        <section class="container pt-7 col-8" >
+        <section class="container pt-7 col-10" >
             <div class="row">
                 <div class="col">
                     <p>{{ form_row(form.content) }}</p>
@@ -63,7 +93,7 @@
             </div>
         </section>
 
-        <section class="container pt-7 col-8" >
+        <section class="container pt-7 col-10" >
             <div class="row d-flex justify-content-between">
                 <div class="col">
                     <p>{{ form_row(form.trick_group) }}</p>

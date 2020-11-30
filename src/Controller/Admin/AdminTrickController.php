@@ -195,56 +195,56 @@ class AdminTrickController extends AbstractController
 
     }
 
-    /**
-     * @Route("admin/delete/image/{id}", name="trick_delete_image", methods={"DELETE"})
-     * @param Image $image
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function deleteImage(Image $image, Request $request)
-    {
-        $data = json_decode($request->getContent(), true);
+//    /**
+//     * @Route("admin/delete/image/{id}", name="trick_delete_image", methods={"DELETE"})
+//     * @param Image $image
+//     * @param Request $request
+//     * @return JsonResponse
+//     */
+//    public function deleteImage(Image $image, Request $request)
+//    {
+//        $data = json_decode($request->getContent(), true);
+//
+//        if($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token']))
+//        {
+//            $imageName = $image->getName();
+//            unlink($this->getParameter('images_directory') . '/' . $imageName);
+//
+//            $em = $this->getDoctrine()->getManager();
+//            $em->remove($image);
+//            $em->flush();
+//
+//            //On repond en json
+//            return new JsonResponse(['success' => 1]);
+//        }else{
+//            return new JsonResponse(['error' => 'Token Invalide'], 400);
+//        }
+//
+//
+//    }
+//
+//    /**
+//     * @Route("admin/delete/video/{id}", name="trick_delete_video", methods={"DELETE"})
+//     * @param Video $video
+//     * @param Request $request
+//     * @return JsonResponse
+//     */
+//    public function deleteVideo(Video $video, Request $request)
+//    {
+//        $data = json_decode($request->getContent(), true);
+//
+//        if($this->isCsrfTokenValid('delete' . $video->getId(), $data['_token']))
+//        {
+//            $em = $this->getDoctrine()->getManager();
+//            $em->remove($video);
+//            $em->flush();
+//
+//            return new JsonResponse(['success' => 1]);
+//        }else{
+//            return new JsonResponse(['error' => 'Token Invalide'], 400);
+//        }
 
-        if($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token']))
-        {
-            $imageName = $image->getName();
-            unlink($this->getParameter('images_directory') . '/' . $imageName);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($image);
-            $em->flush();
-
-            //On repond en json
-            return new JsonResponse(['success' => 1]);
-        }else{
-            return new JsonResponse(['error' => 'Token Invalide'], 400);
-        }
-
-
-    }
-
-    /**
-     * @Route("admin/delete/video/{id}", name="trick_delete_video", methods={"DELETE"})
-     * @param Video $video
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function deleteVideo(Video $video, Request $request)
-    {
-        $data = json_decode($request->getContent(), true);
-
-        if($this->isCsrfTokenValid('delete' . $video->getId(), $data['_token']))
-        {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($video);
-            $em->flush();
-
-            return new JsonResponse(['success' => 1]);
-        }else{
-            return new JsonResponse(['error' => 'Token Invalide'], 400);
-        }
-
-
-    }
+//    }
 
 }
