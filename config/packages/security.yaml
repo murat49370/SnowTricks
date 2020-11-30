@@ -17,7 +17,7 @@ security:
             provider: from_database
             form_login:
                 check_path: login
-                default_target_path: admin_trick_index
+                default_target_path: home
             logout:
                 path: /logout
                 target: /

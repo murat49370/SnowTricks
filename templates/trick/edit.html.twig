@@ -6,7 +6,7 @@
 
 
     {{ form_start(form) }}
-    <div class="container mt-5 mb-5 pr-0 pl-0">
+    <div class="container mt-5 pr-0 pl-0">
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -14,14 +14,8 @@
         {% endfor %}
 
         <header class="jarallax bg-dark" data-jarallax data-type="scale-opacity" data-speed="0.09">
-
             <div class="jarallax-img px-0" style="background-image: url(
-            {% if trick.mainImage %}
-                {{ asset('uploads/images/' ~ trick.mainImage.name ) }}
-            {% else %}
-                {{ asset('uploads/images/default.jpg') }}
-            {% endif %}
-
+            {% if trick.mainImage %}{{ asset('uploads/images/' ~ trick.mainImage.name ) }}{% else %}{{ asset('uploads/images/default.jpg') }}{% endif %}
             );"></div>
             <div class="container">
                 <div class="d-flex flex-row-reverse align-items-start">
@@ -32,7 +26,6 @@
                         <div class="m-2">
                             <a class="inline" href="#"><i class="fe-trash"></i></a>
                         </div>
-
                     </div>
             </div>
             <div class="container py-md-3">
@@ -49,8 +42,19 @@
 
 
     <div class="container border border-secondary pt-4">
+        <!-- Section title and Main image edit -->
+        <section>
+            <div class="row">
+                <div class="col-6">
+                    {{ form_row(form.title) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.main_image) }}
+                </div>
+            </div>
+        </section>
 
-        {{ form_row(form.title) }}
+
 
         <!-- Section medias edit -->
         <section>
@@ -70,8 +74,18 @@
                 {% for image in trick.images %}
                     <div class="col" >
                         <img src="{{ asset('uploads/images/' ~ image.name ) }}" alt="image">
-                        <a href="{{ path('trick_delete_image', {'id': image.id}) }}"
-                           data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimé</a>
+                        <div class="row">
+                            <div class="col-2">
+                                <a href="{{ path('trick_delete_image', {'id': image.id}) }}"
+                                   data-delete data-token="{{ csrf_token('delete' ~ image.id) }}"><i class="fe-trash"></i></a>
+                            </div>
+                            <div class="col-10">
+                                <a href="{{ path('trick_main_image', {id: trick.id}) }}?id_img={{ image.id }}">Image par defaut</a>
+                            </div>
+                        </div>
+
+
+
                     </div>
                 {% endfor %}
                 {% for video in trick.videos %}

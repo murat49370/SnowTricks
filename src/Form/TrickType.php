@@ -25,11 +25,11 @@ class TrickType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('status', ChoiceType::class, [
-                'choices'  => [
-                    'Valide' => 'Valide',
-                    'En attente' => 'waiting'
-                ]])
+//            ->add('status', ChoiceType::class, [
+//                'choices'  => [
+//                    'Valide' => 'Valide',
+//                    'En attente' => 'waiting'
+//                ]])
             ->add('main_image', EntityType::class, [
                 'class' => Image::class,
                 'required'=> false,
@@ -37,11 +37,11 @@ class TrickType extends AbstractType
                 return '<li><img src="uploads/images/' . $image->getName() . '"></li>' ;
                 }
             ])
-            ->add('slug')
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'pseudo'
-            ])
+            //->add('slug')
+//            ->add('user', EntityType::class, [
+//                'class' => User::class,
+//                'choice_label' => 'pseudo'
+//            ])
             ->add('trick_group', EntityType::class, [
                 'class' => TrickGroup::class,
                 'choice_label' => 'title',

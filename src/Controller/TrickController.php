@@ -8,6 +8,7 @@ use App\Entity\Image;
 use App\Entity\Trick;
 use App\Entity\Video;
 use App\Form\CommentType;
+use App\Form\TrickType;
 use App\Form\UserTrickType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -121,7 +122,7 @@ class TrickController extends AbstractController
      */
     public function edit(Trick $trick, Request $request)
     {
-        $form = $this->createForm(UserTrickType::class, $trick);
+        $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
@@ -191,8 +192,8 @@ class TrickController extends AbstractController
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
 
-
     }
+
 
     /**
      * @Route("/delete/video/{id}", name="trick_delete_video", methods={"DELETE"})
@@ -214,6 +215,32 @@ class TrickController extends AbstractController
         }else{
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
+
+
+    }
+
+
+    /**
+     * @Route("/edit/image/trick/{id}", name="trick_main_image")
+     * @param Trick $trick
+     * @param Request $request
+     * @param Image $image
+     * @return RedirectResponse
+     */
+    public function defaultImage(trick $trick, Request $request)
+    {
+
+
+        $imageId = $request->get('id_img');
+
+        $img = $this->em->find(Image::class, $imageId);
+
+        $trick->setMainImage($img);
+
+        $this->em->persist($trick);
+        $this->em->flush();
+        $this->addFlash('success', 'Trick modifié avec succès');
+        return $this->redirectToRoute('trick_edit', ['id' => $trick->getId()] );
 
 
     }
