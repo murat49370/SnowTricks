@@ -9,7 +9,6 @@ use App\Entity\Trick;
 use App\Entity\Video;
 use App\Form\CommentType;
 use App\Form\TrickType;
-use App\Form\UserTrickType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -115,6 +114,59 @@ class TrickController extends AbstractController
     }
 
     /**
+     * @route ("/trick/create", name="trick_create")
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
+    public function create(Request $request)
+    {
+        $trick = new Trick();
+        $form = $this->createForm(TrickType::class, $trick);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            // on récupere les images
+            $images = $form->get('images')->getData();
+
+            // On boucle les images
+            foreach ($images as $image)
+            {
+                //On genere nouveau non de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+
+                $image->move(
+                    $this->getParameter('images_directory'), $fichier
+                );
+                // On stoch l'image dans la BDD (nom)
+                $img = new Image();
+                $img->setName($fichier);
+                $trick->addImage($img);
+            }
+
+            $video = $form->get('videos')->getData();
+            if ($video)
+            {
+                $vid = new Video();
+                $vid->setUrl($video);
+                $trick->addVideo($vid);
+            }
+
+            $this->em->persist($trick);
+            $this->em->flush();
+            $this->addFlash('success', 'Trick crée avec succès');
+            return $this->redirectToRoute('admin_trick_index');
+        }
+
+        return $this->render('admin/trick/new.html.twig', [
+            'trick' => $trick,
+            'form' => $form->createView()
+        ]);
+
+    }
+
+    /**
      * @route ("/trick/edit/{id}", name="trick_edit", methods="GET|POST")
      * @param Trick $trick
      * @param Request $request
@@ -158,7 +210,7 @@ class TrickController extends AbstractController
 
             $this->em->flush();
             $this->addFlash('success', 'Trick modifié avec succès');
-            return $this->redirectToRoute('trick_read', ['id' => $trick->getId()] );
+            return $this->redirectToRoute('trick_edit', ['id' => $trick->getId()] );
         }
 
         return $this->render('trick/edit.html.twig', [

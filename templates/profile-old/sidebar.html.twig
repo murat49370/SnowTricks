@@ -1,7 +1,6 @@
 <div class="col-lg-4 mb-4 mb-lg-0">
     <div class="bg-light rounded-lg box-shadow-lg">
-        <div class="px-4 py-4 mb-1 text-center">
-            <img class="d-block rounded-circle mx-auto my-2" style="width: 100px;" src="{{ asset('uploads/images/') }}{{ app.user.avatar }}"/>
+        <div class="px-4 py-4 mb-1 text-center"><img class="d-block rounded-circle mx-auto my-2" src="{{ app.user.gravatarurl }}" alt="Amanda Wilson"/>
             <h6 class="mb-0 pt-1">{{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h6>
             <span class="text-muted font-size-sm">@{{ app.user.pseudo }}</span>
         </div>

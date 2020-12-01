@@ -26,15 +26,16 @@ class Image
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="images", cascade={"remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $trick;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Trick::class, mappedBy="main_image", cascade={"persist", "remove"})
-     */
-    private $mainImage;
+//    /**
+//     * @ORM\OneToOne(targetEntity=Trick::class, mappedBy="main_image")
+//     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+//     */
+//    private $mainImage;
 
     public function getId(): ?int
     {
@@ -71,23 +72,23 @@ class Image
         return $this;
     }
 
-    public function getMainImage(): ?Trick
-    {
-        return $this->mainImage;
-    }
-
-    public function setMainImage(?Trick $mainImage): self
-    {
-        $this->mainImage = $mainImage;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newMain_image = null === $mainImage ? null : $this;
-        if ($mainImage->getMainImage() !== $newMain_image) {
-            $mainImage->setMainImage($newMain_image);
-        }
-
-        return $this;
-    }
+//    public function getMainImage(): ?Trick
+//    {
+//        return $this->mainImage;
+//    }
+//
+//    public function setMainImage(?Trick $mainImage): self
+//    {
+//        $this->mainImage = $mainImage;
+//
+//        // set (or unset) the owning side of the relation if necessary
+//        $newMain_image = null === $mainImage ? null : $this;
+//        if ($mainImage->getMainImage() !== $newMain_image) {
+//            $mainImage->setMainImage($newMain_image);
+//        }
+//
+//        return $this;
+//    }
 
     public function __toString(): string
     {

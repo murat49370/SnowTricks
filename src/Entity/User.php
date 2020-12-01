@@ -93,6 +93,12 @@ class User implements UserInterface, \Serializable
      */
     private $reset_token;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"})
+     * @ORM\joinColumn(onDelete="SET NULL")
+     */
+    private $avatar;
+
 
     public function __construct()
     {
@@ -352,6 +358,31 @@ class User implements UserInterface, \Serializable
     public function setResetToken(?string $reset_token): self
     {
         $this->reset_token = $reset_token;
+
+        return $this;
+    }
+
+    public function getAvatar()
+    {
+        if ($this->avatar == null)
+        {
+            return 'default-avatar.jpg';
+        }else{
+            return $this->avatar;
+        }
+
+    }
+
+    public function setAvatar(?Image $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function addAvatar(Image $image): self
+    {
+        $this->avatar = $image;
 
         return $this;
     }
