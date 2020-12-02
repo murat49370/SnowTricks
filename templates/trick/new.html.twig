@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un nouveau d'un trick{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="container mt-5 pr-0 pl-0">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <header class="jarallax bg-dark" data-jarallax data-type="scale-opacity" data-speed="0.09">
+            <div class="jarallax-img px-0" style="background-image: url(
+            {% if trick.mainImage %}{{ asset('uploads/images/' ~ trick.mainImage.name ) }}{% else %}{{ asset('uploads/images/default.jpg') }}{% endif %}
+            );"></div>
+            <div class="container">
+
+            <div class="container py-md-3">
+                <div class="row justify-content-md-center">
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <div class=" rounded-lg box-shadow-lg py-5">
+                            <h1 class="text-center text-white mb-5 py-5">Ajouter un nouveau trick</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+    </div>
+
+
+    <div class="container border border-secondary pt-4 pb-4 mb-4">
+        <!-- Section title -->
+        {{ form_start(form) }}
+        <section>
+            <div class="row">
+                <div class="col">
+                    {{ form_row(form.title) }}
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Section medias edit -->
+        <section>
+            <div class="row">
+                <div class="col-6">
+                    {{ form_row(form.images) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.videos) }}
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Trick content -->
+        <section class="container pt-7 col-10" >
+            <div class="row">
+                <div class="col">
+                    <p>{{ form_row(form.content) }}</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container pt-7 col-10" >
+            <div class="row">
+                <div class="col-3">
+                    <p>{{ form_row(form.trick_group) }}</p>
+                </div>
+                <div class="col-9">
+                    <div class="row d-flex justify-content-end">
+                        <div class="m-2">
+                            <button class="btn btn-primary">{{ button|default('Enregistrer') }}</button>
+                        </div>
+                        {{ form_end(form) }}
+                        <div class="m-2">
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/medias.js') }}"></script>
+
+{% endblock %}

@@ -3,6 +3,7 @@
 {% block title %}Bienvenue sur SnowTricks{% endblock %}
 
 {% block body %}
+
     <!-- Hero-->
     <section class="jarallax bg-dark py-6 py-md-7" data-jarallax data-type="scale-opacity" data-speed="0.09">
         <div class="jarallax-img" style="background-image: url(img/home/hero-snow.jpg);"></div>
@@ -10,59 +11,65 @@
             <div class="row justify-content-md-center">
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class=" rounded-lg box-shadow-lg py-5">
-                        <form class="py-sm-2 px-sm-3">
+                        <div class="py-sm-2 px-sm-3">
                             <h1 class="text-center text-white mb-4">Bienvenue sur SnowTricks</h1>
-                            <div class="row">
-                                <div class="col-sm-12 form-group">
-                                    <label class="form-label" for="rf-date">Date and time</label>
-                                    <div class="input-group-overlay">
-                                        <input class="form-control appended-form-control cs-date-picker" type="text" placeholder="Choose date / time" data-datepicker-options="{&quot;enableTime&quot;: true, &quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;F j, Y H:i&quot;, &quot;dateFormat&quot;: &quot;Y-m-d H:i&quot;, &quot;minDate&quot;: &quot;today&quot;}" id="rf-date">
-                                        <div class="input-group-append-overlay"><span class="input-group-text"><i class="fe-calendar"></i></span></div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 form-group">
-                                    <label class="form-label" for="rf-company-size">Company size</label>
-                                    <input class="form-control" type="number" value="1" placeholder="How many people" id="rf-company-size">
-                                </div>
-                                <div class="col-sm-6 form-group">
-                                    <label class="form-label" for="rf-email">Email address</label>
-                                    <input class="form-control" type="email" placeholder="Your email" id="rf-email">
+                            <div class="row mt-4">
+                                <div class="col-sm-12">
+                                    <h2 class="text-center text-white mb-4">Le site communautaire de référence sur le Snow Bord !</h2>
                                 </div>
                             </div>
-                            <div class="row align-items-center pt-2">
-                                <div class="col-sm-6 mb-4 mb-sm-0"><a href="tel:+15262200459"><i class="fe-phone font-size-xl mr-2"></i>+ 1 526 220 0459</a></div>
-                                <div class="col-sm-6">
-                                    <button class="btn btn-primary btn-block" type="submit">Reserve</button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+
     <!-- List Tricks-->
     <section class="bg-secondary d-flex justify-content-center mt-4 py-5 my-md-0 pt-md-7 pb-md-6" >
-        <div class="container">
+        <div class="container-fluid">
+
+            <!-- Messages Flash-->
+            <div class="container">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+
+
             <div class="row d-flex justify-content-center">
                 {% for trick in tricks %}
                     <div class=" card col-md-2 m-1 pr-0 pl-0">
-                        <img src="{{ trick.mainImage }}" class="card-img-top m-0"  alt="...">
+                        <img src="{{ asset('uploads/images/') }}{% if trick.mainImage %}{{ trick.mainImage.name }}{% else %}default.jpg{% endif %}" class="card-img-top m-0" alt="...">
                         <div class="card-footer">
                             <div class="row">
-                                <div class="col-lg-8">
-                                    <h5 class="card-title">{{ trick.title }}</h5>
-                                    <a href="{{ path('trick_read', { id: trick.id }) }}">Voir</a>
-                                    <br>
-                                    <small>{{ trick.comments|length }} commentaires</small>
+                                <div class="col-lg-9">
+                                    <h5 class="card-title"><a href="{{ path('trick_read', { id: trick.id }) }}">{{ trick.title }}</a></h5>
                                 </div>
-                                <div class="col-lg-4">
-                                    <a class="inline" href="#">
-                                        <i class="fe-edit-2"></i>
-                                    </a>
-                                    <a class="inline" href="#">
-                                        <i class="fe-trash"></i>
-                                    </a>
+                                <div class="col-lg-3">
+                                    {% if app.user %}
+                                        {% if app.user.id == trick.user.id %}
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <a href="{{ path('trick_edit', {id: trick.id}) }}">
+                                                        <i class="fe-edit-2"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="col-6">
+                                                    <form method="post" action="{{ path('trick_delete', {id: trick.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiement sûr ?')">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+                                                        <button class="btn p-0"><i class="fe-trash"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+
                                 </div>
                             </div>
 

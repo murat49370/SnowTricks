@@ -16,7 +16,7 @@
         {% for image in trick.images %}
             <div class="col-md-12 mt-4">
                 <img src="{{ asset('uploads/images/' ~ image.name ) }}" alt="image" width="150">
-                <a href="{{ path('trick_delete_image', {'id': image.id}) }}"
+                <a href="{{ path('user_trick_delete_image', {'id': image.id}) }}"
                 data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimé</a>
 
             </div>
@@ -31,7 +31,7 @@
                        src="{{ video.url }}"
                        width="250"
                        height="200">
-                <a href="{{ path('trick_delete_video', {'id': video.id}) }}"
+                <a href="{{ path('user_trick_delete_video', {'id': video.id}) }}"
                    data-delete data-token="{{ csrf_token('delete' ~ video.id) }}">Supprimé</a>
             </div>
         {% endfor %}

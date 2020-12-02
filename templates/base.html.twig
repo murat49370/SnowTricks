@@ -57,7 +57,7 @@
     </div>
 
     <!-- Administration navbar -->
-    {% if app.user and app.user.role == "admin" %}
+    {% if is_granted('ROLE_ADMIN') %}
         <header>
             <div class="bg-dark">
                 <div class="container-fluid pl-5 pr-5">
@@ -90,7 +90,7 @@
 
     {% endif %}
 
-    <header>
+    <header class="navbar-box-shadow navbar-sticky">
         <div class="bg-light">
             <div class="container-fluid pl-5 pr-5">
                 <div class="row">
@@ -107,17 +107,20 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/tricks">Tricks <span class="sr-only"></span></a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/inscription">Inscription <span class="sr-only"></span></a>
-                                </li>
                                 {% if not app.user %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/login">login <span class="sr-only"></span></a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/inscription">Inscription <span class="sr-only"></span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/login">login <span class="sr-only"></span></a>
+                                    </li>
                                 {% else %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="/logout">logout <span class="sr-only"></span></a>
                                 </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/profile/{{ app.user.id }}">Profile <span class="sr-only"></span></a>
+                                    </li>
                                 {% endif %}
                             </ul>
                         </div>
@@ -134,7 +137,6 @@
 
 
 
-</main>
 <footer class="site-footer bg-dark py-5">
     <div class="container d-sm-flex justify-content-between align-items-center text-center">
 

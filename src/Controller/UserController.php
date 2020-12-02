@@ -1,9 +1,10 @@
 <?php
 
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 
+use App\Entity\Image;
 use App\Entity\Trick;
 use App\Entity\User;
 use App\Form\RegistrationType;
@@ -23,7 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class AdminUserController extends AbstractController
+class UserController extends AbstractController
 {
 
     /**
@@ -38,7 +39,6 @@ class AdminUserController extends AbstractController
     private $em;
 
     /**
-     * AdminTrickController constructor.
      * @param UserRepository $repository
      * @param EntityManagerInterface $em
      */
@@ -48,25 +48,27 @@ class AdminUserController extends AbstractController
         $this->em = $em;
     }
 
-    /**
-     * @route ("/admin/user", name="admin_user_index")
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @return Response
-     */
-    public function index(PaginatorInterface $paginator, Request $request): Response
-    {
+//    /**
+//     * @route ("/profile", name="user_index")
+//     * @param PaginatorInterface $paginator
+//     * @param Request $request
+//     * @return Response
+//     */
+//    public function index(PaginatorInterface $paginator, Request $request): Response
+//    {
+//
+//        $users = $this->repository->findBy(
+//            array(), array('registred_at' => 'DESC')
+//        );
+//        return $this->render('/admin/user/index.html.twig', [
+//            'users' => $users,
+//        ]);
+//    }
 
-        $users = $this->repository->findBy(
-            array(), array('registred_at' => 'DESC')
-        );
-        return $this->render('/admin/user/index.html.twig', [
-            'users' => $users,
-        ]);
-    }
+
 
     /**
-     * @route ("/admin/user/edit/{id}", name="admin_user_edit", methods="GET|POST")
+     * @route ("/profile/{id}", name="user_edit", methods="GET|POST")
      * @param User $user
      * @param Request $request
      * @return Response
@@ -78,19 +80,34 @@ class AdminUserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            // on récupere l'avatar
+            $avatar = $form->get('avatar')->getData();
+            if ($avatar)
+            {
+                //On genere nouveau non de fichier
+                $fichier = md5(uniqid()) . '.' . $avatar->guessExtension();
+
+                $avatar->move($this->getParameter('images_directory'), $fichier);
+                // On stoch l'image dans la BDD (nom)
+                $img = new Image();
+                $img->setName($fichier);
+                $user->addAvatar($img);
+            }
+
+
             $this->em->flush();
             $this->addFlash('success', 'Utilisateur modifié avec succès');
-            return $this->redirectToRoute('admin_user_index');
+            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
         }
 
-        return $this->render('admin/user/edit.html.twig', [
+        return $this->render('profile/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView()
         ]);
     }
 
     /**
-     * @route ("/admin/user/create", name="admin_user_create")
+     * @route ("/profile/create", name="user_create")
      * @param Request $request
      * @return RedirectResponse|Response
      */
@@ -106,10 +123,10 @@ class AdminUserController extends AbstractController
             $this->em->persist($user);
             $this->em->flush();
             $this->addFlash('success', 'Utilisateur crée avec succès');
-            return $this->redirectToRoute('admin_user_index');
+            return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('admin/user/new.html.twig', [
+        return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView()
         ]);
@@ -117,7 +134,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @route ("/admin/user/edite/{id}", name="admin_user_delete", methods="DELETE")
+     * @route ("/profile/edite/{id}", name="user_delete", methods="DELETE")
      * @param User $user
      * @param Request $request
      * @return RedirectResponse
@@ -131,7 +148,7 @@ class AdminUserController extends AbstractController
             $this->addFlash('success', 'Utilisateur supprimé avec succès');
 
         }
-        return $this->redirectToRoute('admin_user_index');
+        return $this->redirectToRoute('user_index');
 
     }
 

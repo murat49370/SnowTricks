@@ -1,13 +1,14 @@
 <?php
 
 
-namespace App\Controller\Admin;
+namespace App\Controller\User;
 
 
 use App\Entity\Image;
 use App\Entity\Trick;
 use App\Entity\Video;
 use App\Form\TrickType;
+use App\Form\UserTrickType;
 use App\Repository\TrickRepository;
 
 
@@ -22,7 +23,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class AdminTrickController extends AbstractController
+class UserTrickController extends AbstractController
 {
 
     /**
@@ -47,84 +48,63 @@ class AdminTrickController extends AbstractController
         $this->em = $em;
     }
 
-    /**
-     * @route ("/admin/trick", name="admin_trick_index")
-     * @param PaginatorInterface $paginator
-     * @param Request $request
-     * @return Response
-     */
-    public function index(PaginatorInterface $paginator, Request $request): Response
-    {
-
-//        $tricks = $paginator->paginate($this->repository->getAllTricksQuery(),
-//            $request->query->getInt('page', 1),
-//            10
-//        );
-//        dd($tricks);
-        $tricks = $this->repository->findBy(
-            array(), array('create_at' => 'DESC')
-        );
-        return $this->render('/admin/trick/index.html.twig', [
-            'tricks' => $tricks,
-        ]);
-    }
-
-    /**
-     * @route ("/admin/trick/edit/{id}", name="admin_trick_edit", methods="GET|POST")
-     * @param Trick $trick
-     * @param Request $request
-     * @return Response
-     */
-    public function edit(Trick $trick, Request $request)
-    {
-        $form = $this->createForm(TrickType::class, $trick);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            // on récupere les images
-            $images = $form->get('images')->getData();
-
-            // On boucle les images
-            foreach ($images as $image)
-            {
-                //On genere nouveau non de fichier
-                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-
-                $image->move(
-                    $this->getParameter('images_directory'), $fichier
-                );
-                // On stoch l'image dans la BDD (nom)
-                $img = new Image();
-                $img->setName($fichier);
-                $trick->addImage($img);
-            }
-
-            // on récupere les video
-            $video = $form->get('videos')->getData();
-            if(!$video == null)
-            {
-                $vid = new Video();
-                $vid->setUrl($video);
-                $vid->setTrick($trick);
-                $trick->addVideo($vid);
-            }
-            $trick->setUpdateAt(new \DateTime());
 
 
-            $this->em->flush();
-            $this->addFlash('success', 'Trick modifié avec succès');
-            return $this->redirectToRoute('admin_trick_index');
-        }
-
-        return $this->render('admin/trick/edit.html.twig', [
-            'trick' => $trick,
-            'form' => $form->createView()
-        ]);
-    }
+//    /**
+//     * @route ("/trick/edit/{id}", name="trick_edit", methods="GET|POST")
+//     * @param Trick $trick
+//     * @param Request $request
+//     * @return Response
+//     */
+//    public function edit(Trick $trick, Request $request)
+//    {
+//        $form = $this->createForm(UserTrickType::class, $trick);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid())
+//        {
+//            // on récupere les images
+//            $images = $form->get('images')->getData();
+//
+//            // On boucle les images
+//            foreach ($images as $image)
+//            {
+//                //On genere nouveau non de fichier
+//                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+//
+//                $image->move(
+//                    $this->getParameter('images_directory'), $fichier
+//                );
+//                // On stoch l'image dans la BDD (nom)
+//                $img = new Image();
+//                $img->setName($fichier);
+//                $trick->addImage($img);
+//            }
+//
+//            // on récupere les video
+//            $video = $form->get('videos')->getData();
+//            if(!$video == null)
+//            {
+//                $vid = new Video();
+//                $vid->setUrl($video);
+//                $vid->setTrick($trick);
+//                $trick->addVideo($vid);
+//            }
+//
+//
+//            $this->em->flush();
+//            $this->addFlash('success', 'Trick modifié avec succès');
+//            return $this->redirectToRoute('home');
+//        }
+//
+//        return $this->render('user/trick/edit.html.twig', [
+//            'trick' => $trick,
+//            'form' => $form->createView()
+//        ]);
+//    }
 
     /**
-     * @route ("/admin/trick/create", name="admin_trick_create")
+     * @route ("/trick/create", name="user_trick_create")
      * @param Request $request
      * @return RedirectResponse|Response
      */
@@ -177,7 +157,7 @@ class AdminTrickController extends AbstractController
     }
 
     /**
-     * @route ("/admin/trick/edite/{id}", name="admin_trick_delete", methods="DELETE")
+     * @route ("/trick/edite/{id}", name="user_trick_delete", methods="DELETE")
      * @param Trick $trick
      * @param Request $request
      * @return RedirectResponse
@@ -196,7 +176,7 @@ class AdminTrickController extends AbstractController
     }
 
 //    /**
-//     * @Route("admin/delete/image/{id}", name="trick_delete_image", methods={"DELETE"})
+//     * @Route("/delete/image/{id}", name="user_trick_delete_image", methods={"DELETE"})
 //     * @param Image $image
 //     * @param Request $request
 //     * @return JsonResponse
@@ -224,7 +204,7 @@ class AdminTrickController extends AbstractController
 //    }
 //
 //    /**
-//     * @Route("admin/delete/video/{id}", name="trick_delete_video", methods={"DELETE"})
+//     * @Route("/delete/video/{id}", name="user_trick_delete_video", methods={"DELETE"})
 //     * @param Video $video
 //     * @param Request $request
 //     * @return JsonResponse
@@ -243,8 +223,8 @@ class AdminTrickController extends AbstractController
 //        }else{
 //            return new JsonResponse(['error' => 'Token Invalide'], 400);
 //        }
-
-
+//
+//
 //    }
 
 }

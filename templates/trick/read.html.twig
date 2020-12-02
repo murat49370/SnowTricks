@@ -5,45 +5,156 @@
 {% block body %}
 
 
-    <div class="container mt-4">
 
+    <div class="container mt-5 pr-0 pl-0">
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
 
+        <header class="jarallax bg-dark" data-jarallax data-type="scale-opacity" data-speed="0.09">
+            <div class="jarallax-img px-0" style="background-image: url(
+            {% if trick.mainImage %}{{ asset('uploads/images/' ~ trick.mainImage.name ) }}{% else %}{{ asset('uploads/images/default.jpg') }}{% endif %}
+                    );"></div>
+            <div class="container">
+                <div class="d-flex flex-row-reverse align-items-start">
+                    {% if app.user %}
+                        {% if app.user.id == trick.user.id %}
+                            <div class="row border m-2" style="background: #ffffff" >
+                                <div class="m-2">
+                                    <a class="inline" href="{{ path('trick_edit', {id: trick.id}) }}">
+                                        <i class="fe-edit-2"></i>
+                                    </a>
+                                </div>
+                                <div class="m-2">
+                                    <form class="inline" method="post" action="{{ path('trick_delete', {id: trick.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiement sûr ?')">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+                                        <button class="btn active"><i class="fe-trash"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
 
-        <h1>{{ trick.title }}</h1>
-        <small>Publier le {{ trick.createAt|date("d/m/Y") }}</small>
-        <p>{{ trick.content }}</p>
+                </div>
+                <div class="container py-md-3">
+                    <div class="row justify-content-md-center">
+                        <div class="col-xl-6 col-lg-6 col-md-6">
+                            <div class=" rounded-lg box-shadow-lg py-5">
+                                <h1 class="text-center text-white mb-5 py-5">{{ trick.title }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </header>
 
-        {% if app.user %}
-        {{ form_start(form) }}
-            {{ form_row(form.content, {'att': {'placeholder': "Votre commentaire..."}}) }}
-            {{ form_row(form.status, { 'attr' : { 'style':'display:none'} }) }}
 
-            <button type="submit" class="btn btn-success">Commenter</button>
-        {{ form_end(form) }}
-        {% else %}
-        <h3>Connecter vous pour pouvoir écrire un commentaire ! </h3>
-        {% endif %}
-
-        <br>
-
-        <small>{{ trick.comments|length }} commentaires</small>
-        <ul>
-            {% for comment in trick.comments | reverse(true) %}
-                {% if comment.status == 'valide' %}
-                <img src="{{ comment.user.gravatarURL }}">
-                <li>Pseudo : {{ comment.AuthorPseudo }}</li>
-                <li>Publier le {{ comment.createAt|date("d/m/Y") }}</li>
-                <li>Message : {{ comment.content }}</li>
-                <br>
-                {% endif %}
-            {% endfor %}
-        </ul>
     </div>
+
+
+    <div class="container border border-secondary pt-4">
+        <!-- Section medias -->
+        <section>
+            <div class="row">
+                {% for image in trick.images %}
+                    <div class="col" >
+                        <img src="{{ asset('uploads/images/' ~ image.name ) }}" alt="image">
+                    </div>
+                {% endfor %}
+                {% for video in trick.videos %}
+                    <div class="col" >
+                        <embed type="video/webm" src="{{ video.url }}" width="200">
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Trick content -->
+        <section class="container pt-7" >
+            <div class="row">
+                <div class="col">
+                    <p>{{ trick.content }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trick infos -->
+        <section class="container pt-7 pb-4 col-9 " >
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-light border border-secondary">Publier le {{ trick.createAt|date("d/m/Y") }}</button>
+                </div>
+                    {% if trick.createAt < trick.updateAt  %}
+                        <div class="col">
+                            <button type="button" class="btn btn-light border border-secondary">Modifier le {{ trick.updateAt|date("d/m/Y") }}</button>
+                        </div>
+                    {% endif %}
+
+                <div class="col">
+                    Dans :
+                    {% for group in trick.trickGroup %}
+                            <button type="button" class="btn btn-light border border-secondary">{{ group.title }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="container col-10 border-top py-4"></div>
+
+        <!-- Leave a comment -->
+        <section class="container col-8">
+        {% if app.user %}
+            {{ form_start(form) }}
+                <form >
+                    <div class="form-row">
+                        <div class="col-9">
+                            {{ form_row(form.content) }}
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-success">Commenter</button>
+                        </div>
+                    </div>
+                </form>
+
+                {{ form_end(form) }}
+                {% else %}
+                    <h3>Connecter vous pour pouvoir écrire un commentaire ! </h3>
+        {% endif %}
+        </section>
+
+        <!-- Divider -->
+        <div class="container col-10 border-top py-4 mt-4"></div>
+
+
+        <!-- List comments -->
+        <section class="container col-8 pb-4">
+                <div class="row">
+                        {% for comment in trick.comments | reverse(true) %}
+                            {% if comment.status == 'valide' %}
+                                <div class="col-2 my-2">
+                                    <img src="{{ comment.user.gravatarURL }}" class="rounded-circle" alt="" />
+                                    <small>le {{ comment.createAt|date("d/m/Y") }}</small>
+                                </div>
+                                <div class="col-10 my-2 border border-secondary">
+                                    <p>{{ comment.content }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+        </section>
+
+
+    </div>
+
+
+
+
+
+
 
 
 

@@ -4,7 +4,7 @@
 
 
 {% block body %}
-    <div class="container mt-4">
+    <div class="container mt-4 mb-4 h-75">
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -39,6 +39,10 @@
 
         <button type="submit" class="btn btn-primary">Se connecter</button>
         </form>
+
+        <div class="row mt-4">
+            <a href="{{ path('security_forgotten_password') }}">Mot de passe oublié ?</a>
+        </div>
 
 
     </div>

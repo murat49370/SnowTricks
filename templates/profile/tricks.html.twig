@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur SnowTricks{% endblock %}
+
+{% block body %}
+
+<div class="bg-secondary">
+    <!-- Page content-->
+    <!-- Slanted background-->
+    <div class="position-relative" style="height: 480px;">
+
+    </div>
+    <!-- Page content-->
+    <div class="container bg-overlay-content pb-4 mb-md-3" style="margin-top: -350px;">
+        <div class="row">
+            <!-- Sidebar-->
+            {% include 'profile/sidebar.html.twig' %}
+            <!-- Content-->
+            <div class="col-lg-8">
+                <div class="d-flex flex-column h-100 bg-light rounded-lg box-shadow-lg p-4">
+                    <div class="py-2 p-md-3">
+                        <!-- Title + Delete link-->
+                        <div class="d-sm-flex align-items-center justify-content-between pb-4 text-center text-sm-left">
+                            <h1 class="h3 mb-2 text-nowrap">Mes tricks ({{ app.user.tricks|length }})</h1>
+                        </div>
+                        <!-- Content-->
+
+                        <div class="row">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for trick in app.user.tricks %}
+                                    <tr>
+                                        <td>{{ trick.title }}</td>
+                                        <td>
+                                            <a href="{{ path('trick_edit', {id: trick.id}) }}" class="btn btn-secondary">Editer</a>
+
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    {% endblock %}

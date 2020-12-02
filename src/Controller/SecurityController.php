@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use phpDocumentor\Reflection\Types\Null_;
 use phpDocumentor\Reflection\Types\This;
+use Swift_Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,9 +50,10 @@ class SecurityController extends AbstractController
      * @route ("/inscription", name="security.registration")
      * @param Request $request
      * @param UserPasswordEncoderInterface $encoder
+     * @param Swift_Mailer $mailer
      * @return Response
      */
-    public function registration(Request $request, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer)
+    public function registration(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer)
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
@@ -77,6 +79,8 @@ class SecurityController extends AbstractController
                     'text/html'
                 );
             $mailer->send($message);
+
+            $this->addFlash('success', 'Inscription réussie ! Veuillez consulter votre boite mail pour finaliser votre inscription.');
 
             return $this->redirectToRoute('login');
         }
@@ -107,7 +111,7 @@ class SecurityController extends AbstractController
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
-        $this->addFlash('success', 'Vous avez bien activé votre compte');
+        $this->addFlash('success', 'Vous avez bien activé votre compte! Connecter vous avec votre email et mot de passe.');
 
         return $this->redirectToRoute('login');
 
@@ -117,11 +121,11 @@ class SecurityController extends AbstractController
      * @Route("/oubli-pass", name="security_forgotten_password")
      * @param Request $request
      * @param UserRepository $userRepository
-     * @param \Swift_Mailer $mailer
+     * @param Swift_Mailer $mailer
      * @param TokenGeneratorInterface $tokenGenerator
      * @return RedirectResponse|Response
      */
-    public function forgottenPass(Request $request, UserRepository $userRepository, \Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator)
+    public function forgottenPass(Request $request, UserRepository $userRepository, Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator)
     {
         // On crée le formulaire
         $form = $this->createForm(ResetPassType::class);
@@ -176,7 +180,9 @@ class SecurityController extends AbstractController
             //Message flash
             $this->addFlash('success', 'Un email de réinisisalisation de mot de passe vous a été envoyer.');
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('login', [
+                'token' => $token
+            ]);
 
         }
 

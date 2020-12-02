@@ -64,9 +64,9 @@ class User implements UserInterface, \Serializable
     private $registred_at;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $role = 'user';
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -92,6 +92,12 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $reset_token;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Image::class, cascade={"persist", "remove"})
+     * @ORM\joinColumn(onDelete="SET NULL")
+     */
+    private $avatar;
 
 
     public function __construct()
@@ -178,18 +184,29 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getRole(): ?string
+
+    public function getRoles(): array
     {
-        return $this->role;
+        $roles =$this->roles;
+
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function setRole(string $role): self
+    /**
+     * @param array $roles
+     * @return $this
+     */
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
-
+        $this->roles = $roles;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
@@ -262,13 +279,6 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    /**
-     * @return string[]
-     */
-    public function getRoles()
-    {
-        return ['ROLE_ADMIN'];
-    }
 
     /**
      * @return string|null
@@ -319,7 +329,7 @@ class User implements UserInterface, \Serializable
     public function getGravatarURL()
     {
         $email = $this->getEmail(); // adresse mail associée au compte
-        $size = 40; // 40x40 pixels
+        $size = 110; // 40x40 pixels
 
         return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?&s=" . $size;
     }
@@ -348,6 +358,31 @@ class User implements UserInterface, \Serializable
     public function setResetToken(?string $reset_token): self
     {
         $this->reset_token = $reset_token;
+
+        return $this;
+    }
+
+    public function getAvatar()
+    {
+        if ($this->avatar == null)
+        {
+            return 'default-avatar.jpg';
+        }else{
+            return $this->avatar;
+        }
+
+    }
+
+    public function setAvatar(?Image $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function addAvatar(Image $image): self
+    {
+        $this->avatar = $image;
 
         return $this;
     }

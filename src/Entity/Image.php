@@ -10,11 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Image
 {
-//    /**
-//     * @ORM\OneToOne(targetEntity=Trick::class)
-//     * @ORM\Column(type="integer")
-//     */
-//    protected $trick;
 
     /**
      * @ORM\Id
@@ -31,30 +26,23 @@ class Image
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="images", cascade={"remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $trick;
+
+//    /**
+//     * @ORM\OneToOne(targetEntity=Trick::class, mappedBy="main_image")
+//     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+//     */
+//    private $mainImage;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAlt(): ?string
-    {
-        return $this->alt;
-    }
-
-    public function setAlt(string $alt): self
-    {
-        $this->alt = $alt;
-
-        return $this;
-    }
-
-
-    public function getTrick(): ?Trick
+     public function getTrick(): ?Trick
     {
         return $this->trick;
     }
@@ -82,6 +70,29 @@ class Image
     {
         $this->name = $name;
         return $this;
+    }
+
+//    public function getMainImage(): ?Trick
+//    {
+//        return $this->mainImage;
+//    }
+//
+//    public function setMainImage(?Trick $mainImage): self
+//    {
+//        $this->mainImage = $mainImage;
+//
+//        // set (or unset) the owning side of the relation if necessary
+//        $newMain_image = null === $mainImage ? null : $this;
+//        if ($mainImage->getMainImage() !== $newMain_image) {
+//            $mainImage->setMainImage($newMain_image);
+//        }
+//
+//        return $this;
+//    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 
 
