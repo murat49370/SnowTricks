@@ -9,6 +9,7 @@ use App\Entity\Trick;
 use App\Entity\Video;
 use App\Form\CommentType;
 use App\Form\TrickType;
+use App\URL;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
@@ -116,9 +118,10 @@ class TrickController extends AbstractController
     /**
      * @route ("/trick/create", name="trick_create")
      * @param Request $request
+     * @param UserInterface $user
      * @return RedirectResponse|Response
      */
-    public function create(Request $request)
+    public function create(Request $request, UserInterface $user)
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
@@ -153,13 +156,17 @@ class TrickController extends AbstractController
                 $trick->addVideo($vid);
             }
 
+            $slug = (new \App\URL)->slugify($trick->getTitle());
+            $trick->setSlug($slug);
+            $trick->setUser($user);
+
             $this->em->persist($trick);
             $this->em->flush();
             $this->addFlash('success', 'Trick crée avec succès');
-            return $this->redirectToRoute('admin_trick_index');
+            return $this->redirectToRoute('home');
         }
 
-        return $this->render('admin/trick/new.html.twig', [
+        return $this->render('trick/new.html.twig', [
             'trick' => $trick,
             'form' => $form->createView()
         ]);

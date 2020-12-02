@@ -59,13 +59,7 @@ class TrickType extends AbstractType
                 'mapped' => false,
                 'required'=> false
             ])
-//            ->add('video', EntityType::class, [
-//                'class' => Video::class,
-//                'choice_label' => 'url',
-//                'label' => "URL vidéo",
-//                'mapped' => false,
-//                'required'=> false
-//            ])
+
         ;
     }
 

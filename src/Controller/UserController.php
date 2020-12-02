@@ -68,7 +68,7 @@ class UserController extends AbstractController
 
 
     /**
-     * @route ("/profile/edit/{id}", name="user_edit", methods="GET|POST")
+     * @route ("/profile/{id}", name="user_edit", methods="GET|POST")
      * @param User $user
      * @param Request $request
      * @return Response

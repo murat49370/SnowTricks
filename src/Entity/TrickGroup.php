@@ -6,6 +6,7 @@ use App\Repository\TrickGroupRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\URL;
 
 /**
  * @ORM\Entity(repositoryClass=TrickGroupRepository::class)
@@ -66,6 +67,7 @@ class TrickGroup
 
     public function setSlug(string $slug): self
     {
+
         $this->slug = $slug;
 
         return $this;

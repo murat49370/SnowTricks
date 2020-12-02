@@ -21,17 +21,10 @@
                     <div class="py-2 p-md-3">
                         <!-- Title + Delete link-->
                         <div class="d-sm-flex align-items-center justify-content-between pb-4 text-center text-sm-left">
-                            <h1 class="h3 mb-2 text-nowrap">Mes tricks ({{ app.user.tricks|length }})</h1><a class="btn btn-link text-danger font-weight-medium btn-sm mb-2" href="#"><i class="fe-trash-2 font-size-base mr-2"></i>Delete account                        </a>
+                            <h1 class="h3 mb-2 text-nowrap">Mes tricks ({{ app.user.tricks|length }})</h1>
                         </div>
                         <!-- Content-->
-                        <div class="bg-secondary rounded-lg p-4 mb-4">
-                            <div class="media d-block d-sm-flex align-items-center"><img class="d-block rounded-circle mx-auto mb-3 mb-sm-0" width="110" src="img/dashboard/avatar/main.jpg" alt="Amanda Wilson"/>
-                                <div class="media-body pl-sm-3 text-center text-sm-left">
-                                    <button class="btn btn-light box-shadow btn-sm mb-2" type="button"><i class="fe-refresh-cw mr-2"></i>Change avatar</button>
-                                    <div class="p mb-0 font-size-ms text-muted">Upload JPG, GIF or PNG image. 300 x 300 required.</div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="row">
                             <table class="table table-striped">
                                 <thead>
@@ -45,13 +38,7 @@
                                     <tr>
                                         <td>{{ trick.title }}</td>
                                         <td>
-                                            <a href="{{ path('admin_trick_edit', {id: trick.id}) }}" class="btn btn-secondary">Editer</a>
-                                            <form method="post" action="{{ path('admin_trick_delete', {id: trick.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiement sûr ?')">
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
-
-                                                <button class="btn btn-danger">Supprimer</button>
-                                            </form>
+                                            <a href="{{ path('trick_edit', {id: trick.id}) }}" class="btn btn-secondary">Editer</a>
 
                                         </td>
                                     </tr>

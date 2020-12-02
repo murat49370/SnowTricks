@@ -47,7 +47,7 @@ class Trick
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $status;
+    private $status = "valide";
 
 
     /**
