@@ -13,7 +13,7 @@ class TrickGroupType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('slug')
+            //->add('slug')
 
         ;
     }

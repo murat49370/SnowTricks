@@ -79,6 +79,7 @@ class TrickController extends AbstractController
             $user = $this->security->getUser();
             $comment->setUser($user);
 
+
             $comment->setTrick($trick);
             $entityManager->persist($comment);
             $entityManager->flush();
@@ -97,7 +98,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @route ("/trick/edite/{id}", name="trick_delete", methods="DELETE")
+     * @route ("profile/trick/edite/{id}", name="trick_delete", methods="DELETE")
      * @param Trick $trick
      * @param Request $request
      * @return RedirectResponse
@@ -116,7 +117,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @route ("/trick/create", name="trick_create")
+     * @route ("profile/trick/create", name="trick_create")
      * @param Request $request
      * @param UserInterface $user
      * @return RedirectResponse|Response
@@ -174,12 +175,13 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @route ("/trick/edit/{id}", name="trick_edit", methods="GET|POST")
+     * @route ("profile/trick/edit/{id}", name="trick_edit", methods="GET|POST")
      * @param Trick $trick
      * @param Request $request
+     * @param UserInterface $user
      * @return Response
      */
-    public function edit(Trick $trick, Request $request)
+    public function edit(Trick $trick, Request $request, UserInterface $user)
     {
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
@@ -214,6 +216,10 @@ class TrickController extends AbstractController
                 $trick->addVideo($vid);
             }
 
+            $slug = (new \App\URL)->slugify($trick->getTitle());
+            $trick->setSlug($slug);
+            $trick->setUser($user);
+
 
             $this->em->flush();
             $this->addFlash('success', 'Trick modifié avec succès');
@@ -227,7 +233,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/delete/image/{id}", name="trick_delete_image", methods={"DELETE"})
+     * @Route("profile/delete/image/{id}", name="trick_delete_image", methods={"DELETE"})
      * @param Image $image
      * @param Request $request
      * @return JsonResponse
@@ -255,7 +261,7 @@ class TrickController extends AbstractController
 
 
     /**
-     * @Route("/delete/video/{id}", name="trick_delete_video", methods={"DELETE"})
+     * @Route("profile/delete/video/{id}", name="trick_delete_video", methods={"DELETE"})
      * @param Video $video
      * @param Request $request
      * @return JsonResponse
@@ -280,7 +286,7 @@ class TrickController extends AbstractController
 
 
     /**
-     * @Route("/edit/image/trick/{id}", name="trick_main_image")
+     * @Route("profile/edit/image/trick/{id}", name="trick_main_image")
      * @param Trick $trick
      * @param Request $request
      * @param Image $image

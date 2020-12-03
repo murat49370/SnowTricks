@@ -326,13 +326,6 @@ class User implements UserInterface, \Serializable
             ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
-    public function getGravatarURL()
-    {
-        $email = $this->getEmail(); // adresse mail associée au compte
-        $size = 110; // 40x40 pixels
-
-        return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?&s=" . $size;
-    }
 
     public function getActivationToken(): ?string
     {
@@ -352,7 +345,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * @param string $reset_token
+     * @param string|null $reset_token
      * @return $this
      */
     public function setResetToken(?string $reset_token): self

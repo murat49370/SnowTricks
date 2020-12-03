@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 
 use App\Entity\TrickGroup;
@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class AdminCategoryController extends AbstractController
+class CategoryController extends AbstractController
 {
 
     /**
@@ -50,7 +50,7 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
-     * @route ("/admin/category", name="admin_category_index")
+     * @route ("/admin/profile/category", name="category_index")
      * @param Request $request
      * @return Response
      */
@@ -60,13 +60,13 @@ class AdminCategoryController extends AbstractController
         $categories = $this->repository->findBy(
             array(), array('id' => 'DESC')
         );
-        return $this->render('/admin/category/index.html.twig', [
+        return $this->render('profile/admin/category/index.html.twig', [
             'categories' => $categories,
         ]);
     }
 
     /**
-     * @route ("/admin/category/edit/{id}", name="admin_category_edit", methods="GET|POST")
+     * @route ("/admin/profile/category/edit/{id}", name="category_edit", methods="GET|POST")
      * @param TrickGroup $trickGroup
      * @param Request $request
      * @return RedirectResponse|Response
@@ -78,19 +78,23 @@ class AdminCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $slug = (new \App\URL)->slugify($trickGroup->getTitle());
+            $trickGroup->setSlug($slug);
+
+
             $this->em->flush();
             $this->addFlash('success', 'Categorie modifié avec succès');
-            return $this->redirectToRoute('admin_category_index');
+            return $this->redirectToRoute('category_index');
         }
 
-        return $this->render('admin/category/edit.html.twig', [
+        return $this->render('profile/admin/category/edit.html.twig', [
             'trickGroup' => $trickGroup,
             'form' => $form->createView()
         ]);
     }
 
     /**
-     * @route ("/admin/category/create", name="admin_category_create")
+     * @route ("/admin/profile/category/create", name="category_create")
      * @param Request $request
      * @return RedirectResponse|Response
      */
@@ -103,13 +107,16 @@ class AdminCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $slug = (new \App\URL)->slugify($category->getTitle());
+            $category->setSlug($slug);
+
             $this->em->persist($category);
             $this->em->flush();
             $this->addFlash('success', 'Category crée avec succès');
-            return $this->redirectToRoute('admin_category_index');
+            return $this->redirectToRoute('category_index');
         }
 
-        return $this->render('admin/category/new.html.twig', [
+        return $this->render('profile/admin/category/new.html.twig', [
             'category' => $category,
             'form' => $form->createView()
         ]);
@@ -117,7 +124,7 @@ class AdminCategoryController extends AbstractController
     }
 
     /**
-     * @route ("/admin/category/edite/{id}", name="admin_category_delete", methods="DELETE")
+     * @route ("/admin/profile/category/edite/{id}", name="category_delete", methods="DELETE")
      * @param TrickGroup $category
      * @param Request $request
      * @return RedirectResponse
@@ -131,7 +138,7 @@ class AdminCategoryController extends AbstractController
             $this->addFlash('success', 'Catégorie supprimé avec succès');
 
         }
-        return $this->redirectToRoute('admin_category_index');
+        return $this->redirectToRoute('category_index');
 
     }
 
