@@ -40,7 +40,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/", name="home")
+     * @Route("/tricks", name="trick_index")
      * @param Request $request
      * @return Response
      */
@@ -48,12 +48,20 @@ class TrickController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Trick::class);
         $tricks = $repository->findBy(['status' => 'valide'], ['create_at' => 'DESC']);
-        //$tricks = $this->getDoctrine()->getRepository(Trick::class)->getAllTricks();
-        return $this->render('home/index.html.twig', [
+        return $this->render('trick/index.html.twig', [
             'current_menu' => 'home',
             'request' => $request,
             'tricks' => $tricks
         ]);
+    }
+
+    /**
+     * @route ("/profile/tricks", name="profile_tricks")
+     * @return Response
+     */
+    public function tricks()
+    {
+        return $this->render('/profile/tricks.html.twig');
     }
 
 //    public function loadingMore()
@@ -112,7 +120,7 @@ class TrickController extends AbstractController
             $this->addFlash('success', 'Trick supprimé avec succès');
 
         }
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('trick_index');
 
     }
 
@@ -164,7 +172,7 @@ class TrickController extends AbstractController
             $this->em->persist($trick);
             $this->em->flush();
             $this->addFlash('success', 'Trick crée avec succès');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('trick_index');
         }
 
         return $this->render('trick/new.html.twig', [
@@ -309,4 +317,6 @@ class TrickController extends AbstractController
 
 
     }
+
+
 }
