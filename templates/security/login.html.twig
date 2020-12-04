@@ -4,48 +4,57 @@
 
 
 {% block body %}
-    <div class="container mt-4 mb-4 h-75">
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
+    <div class="h-75 mt-6">
+        <div class="d-flex justify-content-center ">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey | trans(error.messagedata, 'security') }}
+                </div>
+
+            {% endif %}
+
+            <div class="row">
+                <div class="col-12 mt-4">
+                    <h2>Connexion</h2>
+                </div>
+                <div class="col-10 border m-2 p-2 mb-7 ">
+                    <form action="{{ path('login') }}" method="post">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="username" name="_username" class="form-control" value="{{ last_username }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" id="password" name="_password" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                    </form>
+
+                    <div class="row mt-4 ml-1">
+                        <a href="{{ path('security.registration') }}">Inscription</a>
+                    </div>
+                    <div class="row ml-1">
+                        <a href="{{ path('security_forgotten_password') }}">Mot de passe oublié ?</a>
+                    </div>
+                </div>
             </div>
-        {% endfor %}
-        {% for message in app.flashes('danger') %}
-            <div class="alert alert-danger">
-                {{ message }}
-            </div>
-        {% endfor %}
 
-        {% if error %}
-            <div class="alert alert-danger">
-                {{ error.messageKey | trans(error.messagedata, 'security') }}
-            </div>
-
-        {% endif %}
-
-        <h2>Connexion</h2>
-
-
-
-        <form action="{{ path('login') }}" method="post">
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="username" name="_username" class="form-control" value="{{ last_username }}">
         </div>
-        <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="_password" class="form-control">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Se connecter</button>
-        </form>
-
-        <div class="row mt-4">
-            <a href="{{ path('security_forgotten_password') }}">Mot de passe oublié ?</a>
-        </div>
-
 
     </div>
+
 
 
 

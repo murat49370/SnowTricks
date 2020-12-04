@@ -56,48 +56,14 @@
         </div>
     </div>
 
-    <!-- Administration navbar -->
-    {% if is_granted('ROLE_ADMIN') %}
-        <header>
-            <div class="bg-dark">
-                <div class="container-fluid pl-5 pr-5">
-                    <div class="row">
-                        <nav class="col navbar navbar-expand-lg navbar-dark">
-                            <h2 class="navbar-brand">Administration du site</h2>
-
-                            <div id="navbarContent" class="collapse navbar-collapse">
-                                <ul class="navbar-nav ml-md-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/admin/trick">Tricks <span class="sr-only"></span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/admin/comment">Commentaires <span class="sr-only"></span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/admin/user">Utilisateurs <span class="sr-only"></span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/admin/category">Categories <span class="sr-only"></span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-
-                </div>
-            </div>
-        </header>
-
-    {% endif %}
-
-    <header class="navbar-box-shadow navbar-sticky">
+    <header class="navbar-box-shadow navbar-sticky d-none d-md-block">
         <div class="bg-light">
             <div class="container-fluid pl-5 pr-5">
                 <div class="row">
-                    <nav class="col navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand " href="{{ path('home') }}">
+                    <nav class="col navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="{{ path('home') }}">
                             <img class="d-none d-lg-block" width="153" src="{{ asset('img/logo/logo-snowTricks-dark.png') }}" alt="SnowTricks"/>
-                            <img class="d-lg-none" width="58" src="{{ asset('img/logo/logo-snowTricks-dark.png') }}" alt="SnowTricks"/>
+                            <img class="d-lg-none" width="153" src="{{ asset('img/logo/logo-snowTricks-dark.png') }}" alt="SnowTricks"/>
                         </a>
                         <div id="navbarContent" class="collapse navbar-collapse">
                             <ul class="navbar-nav ml-md-auto">
@@ -136,13 +102,44 @@
     {% block body %}{% endblock %}
 
 
-
-<footer class="site-footer bg-dark py-5">
+<footer class="site-footer bg-dark py-5 mb-md-n4">
     <div class="container d-sm-flex justify-content-between align-items-center text-center">
 
-        <p class="font-size-sm mb-0 order-sm-1"><span class="text-light opacity-50 mr-1">Copyright © 2020</span><a class="nav-link-style nav-link-light" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></p>
+        <p class="font-size-sm mb-0 order-sm-1"><span class="text-light opacity-50 mr-1">Copyright © 2020</span><a class="nav-link-style nav-link-light" href="#" target="_blank" rel="noopener">SnowTrick</a></p>
     </div>
 </footer>
+
+
+
+<div class="d-block d-sm-block d-md-none">
+
+    <nav class="navbar fixed-bottom navbar-dark bg-dark d-flex justify-content-center">
+        <div class="container flex-column">
+            <div class="row">
+
+                <div class="col-4 pl-4 pr-4">
+                    <a class="navbar-brand" href="#"><i class="fe-home gi-3x"></i></a>
+                </div>
+                <div class="col-4 pl-4 pr-4">
+                    <a class="navbar-brand" href="#"><i class="fe-edit gi-3x"></i></a>
+                </div>
+                <div class="col-4 pl-4 pr-4">
+                    {% if app.user %}
+                        <a class="navbar-brand"  href="/logout"><i class="fe-log-out gi-3x"></i></a>
+                    {% else %}
+                        <a class="navbar-brand" href="#"><i class="fe-log-in gi-3x"></i></a>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+</div>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fe-arrow-up"></i></button>
+
 <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2">Top</span><i class="btn-scroll-top-icon fe-arrow-up">   </i></a>
 <!-- Vendor scripts: js libraries and plugins-->
 <script src="{{ asset('vendor/jquery/dist/jquery.slim.min.js') }}"></script>
@@ -159,6 +156,11 @@
 <script src="{{ asset('vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
 <script src="{{ asset('vendor/shufflejs/dist/shuffle.min.js') }}"></script>
 <script src="{{ asset('vendor/flatpickr/dist/flatpickr.min.js') }}"></script>
+
+
+<script src="{{ asset('js/custom.js') }}"></script>
+
+
 
 <!-- Main theme script-->
 {#<script src="{{ asset('js/theme.min.js') }}"></script>#}

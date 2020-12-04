@@ -1,17 +1,17 @@
 <?php
 
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 
 use App\Entity\Comment;
 use App\Entity\Trick;
-use App\Form\AdminCommentType;
 use App\Form\CommentType;
 use App\Form\TrickType;
 use App\Repository\CommentRepository;
 
 
+use App\Repository\TrickRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class AdminCommentController extends AbstractController
+class CommentController extends AbstractController
 {
 
     /**
@@ -48,7 +48,7 @@ class AdminCommentController extends AbstractController
     }
 
     /**
-     * @route ("/admin/comment", name="admin_comment_index")
+     * @route ("/admin/profile/comment", name="comment_index")
      * @param PaginatorInterface $paginator
      * @param Request $request
      * @return Response
@@ -62,30 +62,30 @@ class AdminCommentController extends AbstractController
 //        $comments = $this->repository->findBy(
 //            array(), array('create_at' => 'DESC')
 //        );
-        return $this->render('/admin/comment/index.html.twig', [
+        return $this->render('profile/admin/comment/index.html.twig', [
             'comments' => $comments,
         ]);
     }
 
     /**
-     * @route ("/admin/comment/edit/{id}", name="admin_comment_edit", methods="GET|POST")
+     * @route ("/admin/profile/comment/edit/{id}", name="comment_edit", methods="GET|POST")
      * @param Comment $comment
      * @param Request $request
      * @return Response
      */
     public function edit(Comment $comment, Request $request)
     {
-        $form = $this->createForm(AdminCommentType::class, $comment);
+        $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
             $this->em->flush();
             $this->addFlash('success', 'Commentaire modifié avec succès');
-            return $this->redirectToRoute('admin_comment_index');
+            return $this->redirectToRoute('comment_index');
         }
 
-        return $this->render('admin/comment/edit.html.twig', [
+        return $this->render('profile/admin/comment/edit.html.twig', [
             'comment' => $comment,
             'form' => $form->createView()
         ]);
@@ -94,7 +94,7 @@ class AdminCommentController extends AbstractController
 
 
     /**
-     * @route ("/admin/comment/edite/{id}", name="admin_comment_delete", methods="DELETE")
+     * @route ("/admin/profile/comment/edite/{id}", name="comment_delete", methods="DELETE")
      * @param Comment $comment
      * @param Request $request
      * @return RedirectResponse
@@ -108,12 +108,12 @@ class AdminCommentController extends AbstractController
             $this->addFlash('success', 'Comment supprimé avec succès');
 
         }
-        return $this->redirectToRoute('admin_comment_index');
+        return $this->redirectToRoute('comment_index');
 
     }
 
     /**
-     * @route ("/admin/comment/update/{id}", name="admin_comment_update")
+     * @route ("/admin/comment/update/{id}", name="comment_update")
      * @param Comment $comment
      * @return RedirectResponse
      */
@@ -123,7 +123,7 @@ class AdminCommentController extends AbstractController
         $this->em->persist($comment);
         $this->em->flush();
         $this->addFlash('success', 'Commentaire valider avec succès');
-        return $this->redirectToRoute('admin_comment_index');
+        return $this->redirectToRoute('comment_index');
 
     }
 

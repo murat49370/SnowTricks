@@ -14,7 +14,6 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-
 ###> custom ###
 .idea
 /public/uploads/

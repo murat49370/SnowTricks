@@ -15,5 +15,14 @@
             <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('trick_create') }}">Crée un tricks</a>
             <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="/logout"><i class="fe-log-out font-size-lg opacity-60 mr-2"></i>Déconnexion</a>
         </div>
+        <!-- Administration navbar -->
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="d-lg-block collapse pb-2" id="account-menu">
+            <h3 class="d-block bg-secondary font-size-sm font-weight-semibold text-muted mb-0 px-4 py-3">Admin settings</h3>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('comment_index') }}">Commentaires</a>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('category_index') }}">Catégories</a>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="/logout"><i class="fe-log-out font-size-lg opacity-60 mr-2"></i>Déconnexion</a>
+        </div>
+        {% endif %}
     </div>
 </div>
