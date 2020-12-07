@@ -57,7 +57,6 @@ class SecurityController extends AbstractController
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -67,7 +66,6 @@ class SecurityController extends AbstractController
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
-
             //Send activation message
             $message = (new \Swift_Message('Activation de votre compte'))
                 ->setFrom('adessemail@monsite.com')
@@ -83,11 +81,7 @@ class SecurityController extends AbstractController
             $this->addFlash('success', 'Inscription réussie ! Veuillez consulter votre boite mail pour finaliser votre inscription.');
             return $this->redirectToRoute('login');
         }
-
-        return $this->render('security/registration.html.twig', [
-            'form' => $form->createView()
-        ]);
-
+        return $this->render('security/registration.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -111,9 +105,7 @@ class SecurityController extends AbstractController
         $this->entityManager->flush();
 
         $this->addFlash('success', 'Vous avez bien activé votre compte! Connecter vous avec votre email et mot de passe.');
-
         return $this->redirectToRoute('login');
-
     }
 
     /**
@@ -127,23 +119,17 @@ class SecurityController extends AbstractController
     public function forgottenPass(Request $request, UserRepository $userRepository, Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator)
     {
         $form = $this->createForm(ResetPassType::class);
-
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid())
         {
             $donnees = $form->getData();
-
             $user = $userRepository->findOneByEmail($donnees['email']);
-
             if($user == null)
             {
                 $this->addFlash('danger', 'Cette adresse email n\'existe pas');
                 return $this->redirectToRoute('security_forgotten_password');
             }
-
             $token = $tokenGenerator->generateToken();
-
             try
             {
                 $user->setResetToken($token);
@@ -154,33 +140,18 @@ class SecurityController extends AbstractController
                 $this->addFlash('danger', 'Une erreur est survenue : ' . $e->getMessage());
                 return $this->redirectToRoute('login');
             }
-
-            $url = $this->generateUrl('security_reset_password', [
-                'token' => $token
-            ], UrlGeneratorInterface::ABSOLUTE_URL);
+            $url = $this->generateUrl('security_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
             $message = (new \Swift_Message('Mot de passe oublié'))
                 ->setFrom('adessemail@monsite.com')
                 ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView('emails/reset_password.html.twig', [
-                        'url' => $url
-                    ]),
-                    'text/html'
-                );
+                ->setBody($this->renderView('emails/reset_password.html.twig', ['url' => $url]),'text/html');
             $mailer->send($message);
 
             $this->addFlash('success', 'Un email de réinisisalisation de mot de passe vous a été envoyer.');
-
-            return $this->redirectToRoute('login', [
-                'token' => $token
-            ]);
-
+            return $this->redirectToRoute('login', ['token' => $token]);
         }
-
-        return $this->render('security/forgotten_password.html.twig', [
-            'emailForm' => $form->createView()
-        ]);
+        return $this->render('security/forgotten_password.html.twig', ['emailForm' => $form->createView()]);
     }
 
     /**

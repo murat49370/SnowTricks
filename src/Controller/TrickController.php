@@ -134,29 +134,18 @@ class TrickController extends AbstractController
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid())
         {
-            // on récupere les images
             $images = $form->get('images')->getData();
-
-            // On boucle les images
             foreach ($images as $image)
             {
-                //On genere nouveau non de fichier
                 $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-
-                $image->move(
-                    $this->getParameter('images_directory'), $fichier
-                );
-                // On stoch l'image dans la BDD (nom)
+                $image->move($this->getParameter('images_directory'), $fichier);
                 $img = new Image();
                 $img->setName($fichier);
                 $trick->addImage($img);
             }
-
             $video = $form->get('videos')->getData();
             if ($video)
             {
@@ -174,12 +163,7 @@ class TrickController extends AbstractController
             $this->addFlash('success', 'Trick crée avec succès');
             return $this->redirectToRoute('trick_index');
         }
-
-        return $this->render('trick/new.html.twig', [
-            'trick' => $trick,
-            'form' => $form->createView()
-        ]);
-
+        return $this->render('trick/new.html.twig', ['trick' => $trick, 'form' => $form->createView()]);
     }
 
     /**
@@ -204,7 +188,6 @@ class TrickController extends AbstractController
                 $img->setName($fichier);
                 $trick->addImage($img);
             }
-
             $video = $form->get('videos')->getData();
             if(!$video == null)
             {
@@ -213,19 +196,14 @@ class TrickController extends AbstractController
                 $vid->setTrick($trick);
                 $trick->addVideo($vid);
             }
-
             $slug = (new \App\URL)->slugify($trick->getTitle());
             $trick->setSlug($slug);
             $trick->setUser($user);
-
             $this->em->flush();
             $this->addFlash('success', 'Trick modifié avec succès');
             return $this->redirectToRoute('trick_edit', ['id' => $trick->getId()] );
         }
-        return $this->render('trick/edit.html.twig', [
-            'trick' => $trick,
-            'form' => $form->createView()
-        ]);
+        return $this->render('trick/edit.html.twig', ['trick' => $trick, 'form' => $form->createView()]);
     }
 
     /**
@@ -255,7 +233,6 @@ class TrickController extends AbstractController
         }else{
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
-
     }
 
 
