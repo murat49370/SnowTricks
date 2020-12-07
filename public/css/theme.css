@@ -18581,3 +18581,19 @@ a[class*='bg-'] {
 .align-items-center-custom{
   vertical-align: middle;
 }
+
+@media (min-width: 767px) {
+  .collapse.dont-collapse-sm {
+    display: flex;
+    height: auto !important;
+    visibility: visible;
+  }
+}
+
+@media (min-width: 767px) {
+  .collapse2.dont-collapse-sm {
+    display: block;
+    height: auto !important;
+    visibility: visible;
+  }
+}

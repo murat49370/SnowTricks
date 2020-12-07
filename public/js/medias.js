@@ -14,6 +14,7 @@ window.onload = () => {
             // On demande comfirmation
             if(confirm("Voulez-vous supprimer ce media?"))
             {
+                const url = this.getAttribute("href")
                 // On envoie une requete ajax vers le href du lien avec la méthode delete
                 fetch(this.getAttribute("href"), {
                     method: "DELETE",

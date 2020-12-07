@@ -59,7 +59,7 @@ class TrickController extends AbstractController
      * @route ("/profile/tricks", name="profile_tricks")
      * @return Response
      */
-    public function tricks()
+    public function tricks(): Response
     {
         return $this->render('/profile/tricks.html.twig');
     }
@@ -111,7 +111,7 @@ class TrickController extends AbstractController
      * @param Request $request
      * @return RedirectResponse
      */
-    public function delete(Trick $trick, Request $request)
+    public function delete(Trick $trick, Request $request): RedirectResponse
     {
         if ($this->isCsrfTokenValid('delete' . $trick->getId(), $request->get('_token')))
         {
@@ -189,7 +189,7 @@ class TrickController extends AbstractController
      * @param UserInterface $user
      * @return Response
      */
-    public function edit(Trick $trick, Request $request, UserInterface $user)
+    public function edit(Trick $trick, Request $request, UserInterface $user): Response
     {
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
@@ -246,7 +246,7 @@ class TrickController extends AbstractController
      * @param Request $request
      * @return JsonResponse
      */
-    public function deleteImage(Image $image, Request $request)
+    public function deleteImage(Image $image, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
@@ -254,6 +254,9 @@ class TrickController extends AbstractController
         {
             $imageName = $image->getName();
             unlink($this->getParameter('images_directory') . '/' . $imageName);
+
+            $tricks = $image->getTrick();
+            $tricks->removeImage($image);
 
             $em = $this->getDoctrine()->getManager();
             $em->remove($image);
@@ -274,7 +277,7 @@ class TrickController extends AbstractController
      * @param Request $request
      * @return JsonResponse
      */
-    public function deleteVideo(Video $video, Request $request)
+    public function deleteVideo(Video $video, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
