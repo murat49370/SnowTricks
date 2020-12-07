@@ -7,6 +7,7 @@ use App\Entity\Image;
 use App\Entity\Trick;
 use App\Entity\TrickGroup;
 use App\Entity\User;
+use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -62,11 +63,13 @@ class TrickFixtures extends Fixture
         $trickGroup2->setSlug('slug-trick-group-2');
         $manager->persist($trickGroup2);
 
+
+
         for ($i = 1; $i <= 25; $i++)
         {
             $trick = new Trick();
             $trick->setTitle($faker->words(5, true));
-            $trick->setContent($faker->sentence(25, true));
+            $trick->setContent($faker->sentence(rand(75, 500), true));
             $trick->setStatus("valide");
             //$trick->setMainImage("http://placekitten.com/300/150");
             $trick->setSlug('slug-trick' . $i);
@@ -74,24 +77,44 @@ class TrickFixtures extends Fixture
             $trick->addTrickGroup($trickGroup1);
             $manager->persist($trick);
 
-
             // Images
+            $image = new Image();
+            $image->setName('1.jpg');
+            $image->setTrick($trick);
+            $manager->persist($image);
+            $image2 = new Image();
+            $image2->setName('2.jpg');
+            $image2->setTrick($trick);
+            $manager->persist($image2);
+            $image3 = new Image();
+            $image3->setName('3.jpg');
+            $image3->setTrick($trick);
+            $manager->persist($image3);
 
-//            $image = new Image();
-//            $image->setName('http://placekitten.com/600/300');
-//            $image->setTrick($trick);
-//            $manager->persist($image);
+            //video
+            $video = new Video();
+            $video->setTrick($trick);
+            $video->setUrl('https://www.youtube.com/embed/8CtWgw9xYRE');
+            $manager->persist($video);
+            $video2 = new Video();
+            $video2->setTrick($trick);
+            $video2->setUrl('https://www.youtube.com/embed/o7OB24ACnVM');
+            $manager->persist($video2);
+            $video3 = new Video();
+            $video3->setTrick($trick);
+            $video3->setUrl('https://www.youtube.com/embed/46EpVLMbI-A');
+            $manager->persist($video3);
 
-            for ($j = 1; $j <= rand(3, 10); $j++)
+            for ($j = 1; $j <= rand(3, 5); $j++)
             {
                $comment = new Comment();
                $comment->setTrick($trick);
                $comment->setUser($user);
-               $comment->setStatus('waiting');
+               $comment->setStatus('valide');
                $comment->setContent($faker->sentence(15, true));
                $manager->persist($comment);
             }
-            for ($j = 1; $j <= rand(3, 10); $j++)
+            for ($j = 1; $j <= rand(3, 5); $j++)
             {
                 $comment = new Comment();
                 $comment->setTrick($trick);

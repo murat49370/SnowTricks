@@ -59,7 +59,7 @@ class TrickController extends AbstractController
      * @route ("/profile/tricks", name="profile_tricks")
      * @return Response
      */
-    public function tricks()
+    public function tricks(): Response
     {
         return $this->render('/profile/tricks.html.twig');
     }
@@ -111,7 +111,7 @@ class TrickController extends AbstractController
      * @param Request $request
      * @return RedirectResponse
      */
-    public function delete(Trick $trick, Request $request)
+    public function delete(Trick $trick, Request $request): RedirectResponse
     {
         if ($this->isCsrfTokenValid('delete' . $trick->getId(), $request->get('_token')))
         {
@@ -134,29 +134,18 @@ class TrickController extends AbstractController
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid())
         {
-            // on récupere les images
             $images = $form->get('images')->getData();
-
-            // On boucle les images
             foreach ($images as $image)
             {
-                //On genere nouveau non de fichier
                 $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-
-                $image->move(
-                    $this->getParameter('images_directory'), $fichier
-                );
-                // On stoch l'image dans la BDD (nom)
+                $image->move($this->getParameter('images_directory'), $fichier);
                 $img = new Image();
                 $img->setName($fichier);
                 $trick->addImage($img);
             }
-
             $video = $form->get('videos')->getData();
             if ($video)
             {
@@ -174,12 +163,7 @@ class TrickController extends AbstractController
             $this->addFlash('success', 'Trick crée avec succès');
             return $this->redirectToRoute('trick_index');
         }
-
-        return $this->render('trick/new.html.twig', [
-            'trick' => $trick,
-            'form' => $form->createView()
-        ]);
-
+        return $this->render('trick/new.html.twig', ['trick' => $trick, 'form' => $form->createView()]);
     }
 
     /**
@@ -189,32 +173,21 @@ class TrickController extends AbstractController
      * @param UserInterface $user
      * @return Response
      */
-    public function edit(Trick $trick, Request $request, UserInterface $user)
+    public function edit(Trick $trick, Request $request, UserInterface $user): Response
     {
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid())
         {
-            // on récupere les images
             $images = $form->get('images')->getData();
-
-            // On boucle les images
             foreach ($images as $image)
             {
-                //On genere nouveau non de fichier
                 $fichier = md5(uniqid()) . '.' . $image->guessExtension();
-
-                $image->move(
-                    $this->getParameter('images_directory'), $fichier
-                );
-                // On stoch l'image dans la BDD (nom)
+                $image->move($this->getParameter('images_directory'), $fichier);
                 $img = new Image();
                 $img->setName($fichier);
                 $trick->addImage($img);
             }
-
-            // on récupere les video
             $video = $form->get('videos')->getData();
             if(!$video == null)
             {
@@ -223,21 +196,14 @@ class TrickController extends AbstractController
                 $vid->setTrick($trick);
                 $trick->addVideo($vid);
             }
-
             $slug = (new \App\URL)->slugify($trick->getTitle());
             $trick->setSlug($slug);
             $trick->setUser($user);
-
-
             $this->em->flush();
             $this->addFlash('success', 'Trick modifié avec succès');
             return $this->redirectToRoute('trick_edit', ['id' => $trick->getId()] );
         }
-
-        return $this->render('trick/edit.html.twig', [
-            'trick' => $trick,
-            'form' => $form->createView()
-        ]);
+        return $this->render('trick/edit.html.twig', ['trick' => $trick, 'form' => $form->createView()]);
     }
 
     /**
@@ -246,7 +212,7 @@ class TrickController extends AbstractController
      * @param Request $request
      * @return JsonResponse
      */
-    public function deleteImage(Image $image, Request $request)
+    public function deleteImage(Image $image, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
@@ -254,6 +220,9 @@ class TrickController extends AbstractController
         {
             $imageName = $image->getName();
             unlink($this->getParameter('images_directory') . '/' . $imageName);
+
+            $tricks = $image->getTrick();
+            $tricks->removeImage($image);
 
             $em = $this->getDoctrine()->getManager();
             $em->remove($image);
@@ -264,7 +233,6 @@ class TrickController extends AbstractController
         }else{
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
-
     }
 
 
@@ -274,7 +242,7 @@ class TrickController extends AbstractController
      * @param Request $request
      * @return JsonResponse
      */
-    public function deleteVideo(Video $video, Request $request)
+    public function deleteVideo(Video $video, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
@@ -288,8 +256,6 @@ class TrickController extends AbstractController
         }else{
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
-
-
     }
 
 
@@ -300,23 +266,16 @@ class TrickController extends AbstractController
      * @param Image $image
      * @return RedirectResponse
      */
-    public function defaultImage(trick $trick, Request $request)
+    public function defaultImage(trick $trick, Request $request): RedirectResponse
     {
-
-
         $imageId = $request->get('id_img');
-
         $img = $this->em->find(Image::class, $imageId);
-
         $trick->setMainImage($img);
 
         $this->em->persist($trick);
         $this->em->flush();
         $this->addFlash('success', 'Trick modifié avec succès');
         return $this->redirectToRoute('trick_edit', ['id' => $trick->getId()] );
-
-
     }
-
 
 }

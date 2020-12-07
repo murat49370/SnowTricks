@@ -53,11 +53,10 @@ class SecurityController extends AbstractController
      * @param Swift_Mailer $mailer
      * @return Response
      */
-    public function registration(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer)
+    public function registration(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -67,7 +66,6 @@ class SecurityController extends AbstractController
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
-
             //Send activation message
             $message = (new \Swift_Message('Activation de votre compte'))
                 ->setFrom('adessemail@monsite.com')
@@ -81,14 +79,9 @@ class SecurityController extends AbstractController
             $mailer->send($message);
 
             $this->addFlash('success', 'Inscription réussie ! Veuillez consulter votre boite mail pour finaliser votre inscription.');
-
             return $this->redirectToRoute('login');
         }
-
-        return $this->render('security/registration.html.twig', [
-            'form' => $form->createView()
-        ]);
-
+        return $this->render('security/registration.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -97,7 +90,7 @@ class SecurityController extends AbstractController
      * @param UserRepository $userRepository
      * @return RedirectResponse
      */
-    public function activation($token, UserRepository $userRepository)
+    public function activation($token, UserRepository $userRepository): RedirectResponse
     {
         $user = $userRepository->findOneBy(['activation_token' => $token]);
 
@@ -112,9 +105,7 @@ class SecurityController extends AbstractController
         $this->entityManager->flush();
 
         $this->addFlash('success', 'Vous avez bien activé votre compte! Connecter vous avec votre email et mot de passe.');
-
         return $this->redirectToRoute('login');
-
     }
 
     /**
@@ -127,28 +118,18 @@ class SecurityController extends AbstractController
      */
     public function forgottenPass(Request $request, UserRepository $userRepository, Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator)
     {
-        // On crée le formulaire
         $form = $this->createForm(ResetPassType::class);
-
-        //On traite le firmulaire
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid())
         {
             $donnees = $form->getData();
-
-            //On recherche si un utilisateur a cet email
             $user = $userRepository->findOneByEmail($donnees['email']);
-
             if($user == null)
             {
                 $this->addFlash('danger', 'Cette adresse email n\'existe pas');
                 return $this->redirectToRoute('security_forgotten_password');
             }
-
-            //On genere un token
             $token = $tokenGenerator->generateToken();
-
             try
             {
                 $user->setResetToken($token);
@@ -159,37 +140,18 @@ class SecurityController extends AbstractController
                 $this->addFlash('danger', 'Une erreur est survenue : ' . $e->getMessage());
                 return $this->redirectToRoute('login');
             }
+            $url = $this->generateUrl('security_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
-            // On genere url de reinisisalisation du mot de passe
-            $url = $this->generateUrl('security_reset_password', [
-                'token' => $token
-            ], UrlGeneratorInterface::ABSOLUTE_URL);
-
-            //Envoie du message
             $message = (new \Swift_Message('Mot de passe oublié'))
                 ->setFrom('adessemail@monsite.com')
                 ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView('emails/reset_password.html.twig', [
-                        'url' => $url
-                    ]),
-                    'text/html'
-                );
+                ->setBody($this->renderView('emails/reset_password.html.twig', ['url' => $url]),'text/html');
             $mailer->send($message);
 
-            //Message flash
             $this->addFlash('success', 'Un email de réinisisalisation de mot de passe vous a été envoyer.');
-
-            return $this->redirectToRoute('login', [
-                'token' => $token
-            ]);
-
+            return $this->redirectToRoute('login', ['token' => $token]);
         }
-
-        // On envoie vers la page de demande d'email
-        return $this->render('security/forgotten_password.html.twig', [
-            'emailForm' => $form->createView()
-        ]);
+        return $this->render('security/forgotten_password.html.twig', ['emailForm' => $form->createView()]);
     }
 
     /**
@@ -201,7 +163,6 @@ class SecurityController extends AbstractController
      */
     public function resetPassword($token, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        //Recherche utilisateur avec le token
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['reset_token' => $token]);
 
         if($user == null)
@@ -210,13 +171,10 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('login');
         }
 
-        //Si le formulaire est envoyé en méthode post (form fait a la main)
         if($request->isMethod('POST'))
         {
 
             $user->setResetToken(null);
-
-
             $user->setPassword($passwordEncoder->encodePassword($user, $request->get('password')));
             $this->entityManager->persist($user);
             $this->entityManager->flush();
