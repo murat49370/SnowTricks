@@ -1,27 +1,26 @@
 <div class="col-lg-4 mb-4 mb-lg-0">
     <div class="bg-light rounded-lg box-shadow-lg">
         <div class="px-4 py-4 mb-1 text-center">
-            <img class="d-block rounded-circle mx-auto my-2" style="width: 100px;" src="{{ asset('uploads/images/') }}{{ app.user.avatar }}"/>
+            <img class="d-block rounded-circle mx-auto my-2" style="width: 200px;" src="{{ asset('uploads/images/') }}{{ app.user.avatar }}"/>
             <h6 class="mb-0 pt-1">{{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h6>
             <span class="text-muted font-size-sm">@{{ app.user.pseudo }}</span>
         </div>
         <div class="d-lg-none px-4 pb-4 text-center">
             <a class="btn btn-primary px-5 mb-2" href="#account-menu" data-toggle="collapse">
-                <i class="fe-menu mr-2"></i>Account menu</a></div>
+                <i class="fe-menu mr-2"></i>Menu</a></div>
         <div class="d-lg-block collapse pb-2" id="account-menu">
             <h3 class="d-block bg-secondary font-size-sm font-weight-semibold text-muted mb-0 px-4 py-3">Menu</h3>
-            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="/profile/{{ app.user.id }}">Profile info</a>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="/profile/{{ app.user.id }}">Votre profile</a>
             <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="/profile/tricks">Mes tricks</a>
-
-            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('trick_create') }}">Crée un tricks</a>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('trick_create') }}">Ajouter un trick</a>
             <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="/logout"><i class="fe-log-out font-size-lg opacity-60 mr-2"></i>Déconnexion</a>
         </div>
         <!-- Administration navbar -->
         {% if is_granted('ROLE_ADMIN') %}
         <div class="d-lg-block collapse pb-2" id="account-menu">
-            <h3 class="d-block bg-secondary font-size-sm font-weight-semibold text-muted mb-0 px-4 py-3">Administration Menu</h3>
-            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('comment_index') }}">Commentaires</a>
-            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('category_index') }}">Catégories</a>
+            <h3 class="d-block bg-secondary font-size-sm font-weight-semibold text-muted mb-0 px-4 py-3">Menu Admin</h3>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('comment_index') }}">Gestion des commentaires</a>
+            <a class="d-flex align-items-center nav-link-style px-4 py-3 border-top" href="{{ path('category_index') }}">Gestion des catégories</a>
         </div>
         {% endif %}
     </div>

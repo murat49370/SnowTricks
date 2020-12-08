@@ -64,13 +64,9 @@ class TrickController extends AbstractController
         return $this->render('/profile/tricks.html.twig');
     }
 
-//    public function loadingMore()
-//    {
-//        $tricks = $this->getDoctrine()->getRepository(Trick::class)->getAllTricks();
-//    }
 
     /**
-     * @Route("/trick-{id}", name="trick_read")
+     * @Route("/{slug}_{id}/", name="trick_read")
      * @param Trick $trick
      * @param Request $request
      * @param EntityManagerInterface $entityManager
@@ -93,7 +89,7 @@ class TrickController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Commentaire a bien été enregistré, il sera publier aprés sa validation');
 
-            return $this->redirectToRoute('trick_read', ['id' => $trick->getId()]);
+            return $this->redirectToRoute('trick_read', ['id' => $trick->getId(), 'slug' => $trick->getSlug()]);
 
         }
 
@@ -258,7 +254,6 @@ class TrickController extends AbstractController
         }
     }
 
-
     /**
      * @Route("profile/edit/image/trick/{id}", name="trick_main_image")
      * @param Trick $trick
@@ -276,6 +271,39 @@ class TrickController extends AbstractController
         $this->em->flush();
         $this->addFlash('success', 'Trick modifié avec succès');
         return $this->redirectToRoute('trick_edit', ['id' => $trick->getId()] );
+    }
+
+    /**
+     * @Route("/{start}", name="loadMoreTricks", requirements={"start": "\d+"})
+     * @param int $start
+     * @return Response
+     */
+    public function loadMoreTricks($start = 5): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(Trick::class);
+        $tricks = $repository->findBy(['status' => 'valide'], ['create_at' => 'DESC'], 5, $start);
+        return $this->render('trick/loadMoreTrick.html.twig', [
+            'tricks' => $tricks
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}_{id}/{start}", name="loadMoreComments", requirements={"start": "\d+"})
+     * @param Trick $trick
+     * @param int $start
+     * @return Response
+     */
+    public function loadMoreComments(Trick $trick, $start = 5): Response
+    {
+        $slug = $trick->getSlug();
+        $id = $trick->getId();
+        $repository = $this->getDoctrine()->getRepository(Trick::class);
+        $trick = $repository->find($id);
+
+        return $this->render('trick/loadMoreComment.html.twig', [
+            'trick' => $trick,
+            'start' => $start
+        ]);
     }
 
 }

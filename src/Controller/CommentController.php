@@ -128,4 +128,20 @@ class CommentController extends AbstractController
     }
 
 
+
+//    /**
+//     * @Route("/{start}", name="loadMoreCommentes", requirements={"start": "\d+"})
+//     * @param int $start
+//     * @return Response
+//     */
+//    public function loadMoreTricks($start = 5): Response
+//    {
+//        $repository = $this->getDoctrine()->getRepository(Comment::class);
+//        $tricks = $repository->findBy(['status' => 'valide'], ['create_at' => 'DESC'], 5, $start);
+//        return $this->render('trick/loadMoreTrick.html.twig', [
+//            'tricks' => $tricks
+//        ]);
+//    }
+
+
 }

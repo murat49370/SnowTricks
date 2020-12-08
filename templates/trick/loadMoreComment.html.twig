@@ -1,0 +1,19 @@
+<div class="row">
+    {% set i = 5 %}
+    {% for comment in trick.comments | reverse(true) | slice(start, start + 5) %}
+    {% if comment.status == 'valide' %}
+        <div class="row">
+            <div class="col-5 col-sm-3 col-md-2 my-2">
+                <img src="{{ asset('uploads/images/') }}{{ comment.user.avatar }}" height="90px" class="rounded-circle" alt="" />
+                <small>Le {{ comment.createAt|date("d/m/Y") }}</small><br>
+                <small>Par {{ comment.user.pseudo }}</small>
+
+            </div>
+            <div class="col-7 col-sm-9 col-md-10 my-2 border border-secondary p-4">
+                <p>{{ comment.content }}</p>
+            </div>
+        </div>
+
+    {% endif %}
+    {% endfor %}
+</div>
