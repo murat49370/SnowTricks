@@ -51,7 +51,53 @@
             </div>
 
 
-            {% include 'trick/_liste.html.twig' %}
+            {% set i = 5 %}
+            <div class="row d-flex justify-content-center" id="list">
+
+                {% for trick in tricks|slice(0, 5) %}
+                    <div class="card col-xs-12 col-sm-4 col-md-4 col-lg-2 m-3 pr-0 pl-0">
+                        <img src="{{ asset('uploads/images/') }}{% if trick.mainImage %}{{ trick.mainImage.name }}{% else %}default.jpg{% endif %}" class="card-img-top m-0" alt="...">
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h5 class="card-title"><a href="{{ path('trick_read', {slug: trick.slug, id: trick.id }) }}">{{ trick.title }}</a></h5>
+                                </div>
+                                <div class="col-4">
+                                    {% if app.user %}
+                                        {% if app.user.id == trick.user.id %}
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <a href="{{ path('trick_edit',{slug: trick.slug, id: trick.id}) }}">
+                                                        <i class="fe-edit-2"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="col-6">
+                                                    <form method="post" action="{{ path('trick_delete', {id: trick.id}) }}" onsubmit="return confirm('Êtes vous vraiement sûr ?')">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+                                                        <button class="btn p-0 text-primary"><i class="fe-trash"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if tricks|length > i %}
+                <div class="row">
+
+                    <div class="col-12 text-center">
+                        <button id="loadMoreTricks" class="btn btn-primary">Voir plus de tricks</button>
+                    </div>
+                </div>
+
+            {% endif %}
 
 
         </div>
@@ -61,7 +107,30 @@
 
 
 
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        click = 0;
+        function loadMoreTricks(event) {
+            event.preventDefault();
+            click++;
+            var start = 5 * click;
+            const url = "{{ path('home')}}" + start;
+            axios.get(url).then(function(response) {
+                $("#list").append(response.data);
+            }).catch(function (error) {
+                if (response.status === 403) {
+                    window.alert("Vous n'êtes pas autorisé à effectuer cette action !");
+                }
+                else if (response.status === 404) {
+                    window.alert("La page appelé n'existe pas");
+                }
+                else {
+                    window.alert("Une erreur est survenue !");
+                }
+            });
+        }
+        document.getElementById("loadMoreTricks").addEventListener("click", loadMoreTricks);
+    </script>
 
 
 

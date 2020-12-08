@@ -35,19 +35,22 @@ class CommentRepository extends ServiceEntityRepository
     // /**
     //  * @return Comment[] Returns an array of Comment objects
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+
+//    public function findByExampleField($value)
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->andWhere('c.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('c.id', 'ASC')
+//            ->setMaxResults(10, 0)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
+
+//SELECT * FROM `comment` WHERE `trick_id` = 23 AND `status` LIKE 'valide' ORDER BY `create_at` DESC
+
+
 
     /*
     public function findOneBySomeField($value): ?Comment
