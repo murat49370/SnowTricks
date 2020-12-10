@@ -2,6 +2,7 @@
 
 Création d'un site communautaire sur le Snow Bord avec Symfony dans la cadre de ma formation "développeur d'application Symfony/PHP" chez OpenClassrooms.
 
+<a href="https://codeclimate.com/github/murat49370/SnowTricks/maintainability"><img src="https://api.codeclimate.com/v1/badges/db71b74369dea8f3b99f/maintainability" /></a>
 -----------------
 
 ### Installation
